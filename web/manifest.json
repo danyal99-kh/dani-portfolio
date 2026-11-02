@@ -1,12 +1,12 @@
 {
-    "name": "daniweb",
-    "short_name": "daniweb",
+    "name": "Danyal Khodai — Backend & Flutter Developer",
+    "short_name": "Danyal Khodai",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
-    "orientation": "portrait-primary",
+    "background_color": "#E3FDFD",
+    "theme_color": "#395B64",
+    "description": "Portfolio, selected projects, case studies, skills, and resume of Danyal Khodai.",
+    "orientation": "any",
     "prefer_related_applications": false,
     "icons": [
         {
