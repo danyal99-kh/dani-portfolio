@@ -4,7 +4,7 @@ import '../models/social_link.dart';
 
 /// All contact details live here. Placeholder values are intentional and are
 /// detected by the UI so they are never presented as working links.
-const String contactEmail = 'YOUR_EMAIL@example.com';
+const String contactEmail = 'danyal.danyal13851@gmail.com';
 
 const List<SocialLink> socialLinks = [
   SocialLink(
@@ -18,21 +18,21 @@ const List<SocialLink> socialLinks = [
     id: 'github',
     labelFa: 'گیت‌هاب',
     labelEn: 'GitHub',
-    url: 'https://github.com/YOUR_USERNAME',
+    url: 'https://github.com/danyal99-kh',
     icon: Icons.code_rounded,
   ),
   SocialLink(
     id: 'telegram',
     labelFa: 'تلگرام',
     labelEn: 'Telegram',
-    url: 'https://t.me/YOUR_USERNAME',
+    url: 'https://t.me/danyal99_kh',
     icon: Icons.send_rounded,
   ),
   SocialLink(
     id: 'linkedin',
     labelFa: 'لینکدین',
     labelEn: 'LinkedIn',
-    url: 'https://linkedin.com/in/YOUR_USERNAME',
+    url: 'https://linkedin.com/in/danyal99-kh',
     icon: Icons.work_outline_rounded,
   ),
 ];
