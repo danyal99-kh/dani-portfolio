@@ -36,10 +36,10 @@ flutter test
 
 ## Build for GitHub Pages
 
-The repository is deployed under `/Dani_web/`:
+The repository is deployed under `/dani-portfolio/`:
 
 ```bash
-flutter build web --release --base-href /Dani_web/
+flutter build web --release --base-href /dani-portfolio/
 ```
 
 The output is written to `build/web/`. The GitHub Actions workflow in
