@@ -45,7 +45,7 @@ jobs:
         run: flutter test
 
       - name: Build web
-        run: flutter build web --release --base-href /Dani_web/
+        run: flutter build web --release --base-href /dani-portfolio/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
