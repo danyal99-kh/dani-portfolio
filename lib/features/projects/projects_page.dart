@@ -144,8 +144,14 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     maxColumns: 2,
                     spacing: 22,
                     children: [
-                      for (final project in filtered)
-                        ProjectCard(project: project),
+                      for (var i = 0; i < filtered.length; i++)
+                        RevealOnMount(
+                          delay: Duration(milliseconds: 60 * i),
+                          child: ProjectCard(
+                            project: filtered[i],
+                            index: projects.indexOf(filtered[i]),
+                          ),
+                        ),
                     ],
                   ),
           ),

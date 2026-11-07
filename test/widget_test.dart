@@ -59,6 +59,7 @@ void main() {
 
   _registerRouteSmokeTests();
   _registerMobileSmokeTests();
+  _registerCardViewportTests();
 }
 
 void _registerRouteSmokeTests() {
@@ -124,5 +125,46 @@ void _registerMobileSmokeTests() {
 
       expect(tester.takeException(), isNull);
     });
+  }
+}
+
+void _registerCardViewportTests() {
+  const widths = [360.0, 390.0, 430.0];
+  const locales = ['fa', 'en'];
+  const themes = [ThemeMode.light, ThemeMode.dark];
+
+  for (final width in widths) {
+    for (final language in locales) {
+      for (final themeMode in themes) {
+        testWidgets(
+          'project cards fit ${width.toInt()}px ($language, ${themeMode.name})',
+          (tester) async {
+            tester.view.physicalSize = Size(width, 844);
+            tester.view.devicePixelRatio = 1;
+            addTearDown(tester.view.resetPhysicalSize);
+            addTearDown(tester.view.resetDevicePixelRatio);
+
+            final state = AppState(
+              locale: Locale(language),
+              themeMode: themeMode,
+            );
+            await tester.pumpWidget(
+              PortfolioApp(
+                key: ValueKey('cards-$width-$language-${themeMode.name}'),
+                state: state,
+                initialLocation: '/projects',
+              ),
+            );
+            await tester.pumpAndSettle();
+
+            expect(tester.takeException(), isNull);
+            expect(
+              find.text(language == 'fa' ? 'پروژه 01' : 'Project 01'),
+              findsOneWidget,
+            );
+          },
+        );
+      }
+    }
   }
 }

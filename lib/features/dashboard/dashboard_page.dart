@@ -122,7 +122,7 @@ class DashboardPage extends StatelessWidget {
               for (var i = 0; i < featuredProjects.length; i++)
                 RevealOnMount(
                   delay: Duration(milliseconds: 70 * i),
-                  child: ProjectCard(project: featuredProjects[i]),
+                  child: ProjectCard(project: featuredProjects[i], index: i),
                 ),
             ],
           ),

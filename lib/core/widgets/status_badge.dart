@@ -5,10 +5,16 @@ import '../../app/theme/app_colors.dart';
 import '../../data/models/project.dart';
 
 class StatusBadge extends StatelessWidget {
-  const StatusBadge({super.key, required this.status, this.compact = false});
+  const StatusBadge({
+    super.key,
+    required this.status,
+    this.compact = false,
+    this.accentColor,
+  });
 
   final ProjectStatus status;
   final bool compact;
+  final Color? accentColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +26,7 @@ class StatusBadge extends StatelessWidget {
       ProjectStatus.prototype => (colors.accent, Icons.science_outlined),
       ProjectStatus.concept => (colors.muted, Icons.lightbulb_outline_rounded),
     };
+    final tone = accentColor ?? color;
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -27,9 +34,9 @@ class StatusBadge extends StatelessWidget {
         vertical: compact ? 4 : 5,
       ),
       decoration: BoxDecoration(
-        color: color.withValues(alpha: 0.12),
+        color: tone.withValues(alpha: 0.14),
         borderRadius: BorderRadius.circular(999),
-        border: Border.all(color: color.withValues(alpha: 0.45)),
+        border: Border.all(color: tone.withValues(alpha: 0.52)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
