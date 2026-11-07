@@ -44,4 +44,14 @@ class Profile {
   String availability(bool isFa) => isFa ? availabilityFa : availabilityEn;
 
   String get firstNameEn => nameEn.split(' ').first;
+
+  String get initialsEn => nameEn
+      .split(RegExp(r'\s+'))
+      .where((part) => part.isNotEmpty)
+      .map((part) => part[0])
+      .take(2)
+      .join()
+      .toUpperCase();
+
+  String get resumeFileName => resumeAsset.split('/').last;
 }

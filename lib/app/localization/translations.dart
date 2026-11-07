@@ -1,6 +1,7 @@
 const Map<String, Map<String, String>> kTranslations = {
   'fa': {
-    'meta.siteTitle': 'دانیال خدایی — توسعه‌دهنده بک‌اند و فلاتر',
+    'meta.siteTitle':
+        'دانیال خدایی — توسعه‌دهنده بک‌اند | پایتون / جنگو / فلاتر',
     'nav.home': 'داشبورد',
     'nav.about': 'درباره من',
     'nav.projects': 'پروژه‌ها',
@@ -62,7 +63,6 @@ const Map<String, Map<String, String>> kTranslations = {
     'common.dark': 'تاریک',
     'common.system': 'سیستم',
     'common.openInNewTab': 'باز کردن در تب جدید',
-    'common.sampleBadge': 'نمونه',
     'common.loading': 'در حال بارگذاری…',
     'common.retry': 'تلاش دوباره',
     'common.back': 'بازگشت',
@@ -74,9 +74,6 @@ const Map<String, Map<String, String>> kTranslations = {
     'status.prototype': 'نمونه اولیه',
     'status.concept': 'ایده',
     'dashboard.greeting': 'سلام، من',
-    'dashboard.available': 'آماده همکاری در پروژه‌ها',
-    'dashboard.role': 'توسعه‌دهنده بک‌اند و اپلیکیشن‌های موبایل',
-    'dashboard.bio': 'بک‌اند را با پایتون و جنگو می‌سازم و رابط‌های موبایل را با فلاتر. علاقه‌ی اصلی‌ام ساختن APIهای تمیز، تجربه‌های روان و معماری‌ای است که رشد کند.',
     'dashboard.cta': 'اگر ایده‌ای برای یک محصول، API یا اپلیکیشن دارید، خوشحال می‌شوم درباره‌اش حرف بزنیم.',
     'dashboard.whatIDo': 'کاری که انجام می‌دهم',
     'dashboard.focusApiTitle': 'توسعه API',
@@ -96,14 +93,11 @@ const Map<String, Map<String, String>> kTranslations = {
     'dashboard.ctaTitle': 'ایده‌ای برای ساختن دارید؟',
     'dashboard.ctaDesc':
         'از یک API کوچک تا یک محصول کامل، می‌توانیم قدم به قدم آن را بسازیم.',
-    'dashboard.samplePortrait': 'تصویر نمونه — قابل تعویض',
     'dashboard.quickLinks': 'دسترسی سریع',
     'about.title': 'درباره من',
     'about.subtitle':
         'کمی درباره مسیر، علایق و روشی که برای ساختن نرم‌افزار دنبال می‌کنم.',
     'about.introTitle': 'یک توسعه‌دهنده، نه فقط یک عنوان',
-    'about.bio1': 'من دانیال هستم؛ توسعه‌دهنده‌ای که از ساختن سیستم‌های پشت‌صحنه و رابط‌هایی که مردم با آن‌ها کار می‌کنند لذت می‌برد. پایتون، جنگو و فلاتر ابزارهای اصلی من هستند.',
-    'about.bio2': 'بیشتر از عدد و ادعا، به کیفیت کد، یادگیری مستمر و حل مسئله اهمیت می‌دهم. این صفحه محتوای نمونه‌ای دارد که می‌توانید آن را با داستان واقعی خودتان جایگزین کنید.',
     'about.journey': 'مسیر یادگیری',
     'about.journeySubtitle': 'مراحلی که تا اینجا طی کرده‌ام.',
     'about.journey1Title': 'شروع با پایتون',
@@ -143,7 +137,6 @@ const Map<String, Map<String, String>> kTranslations = {
     'about.principle3Title': 'تست کن',
     'about.principle3Desc':
         'تست‌ها به من اطمینان می‌دهند تغییرات بعدی چیزی را نشکنند.',
-    'about.portraitNote': 'این تصویر یک پرتره نمونه است و عکس واقعی دانیال نیست. برای جایگزینی، assets/images/profile.jpg را عوض کنید.',
     'about.currentlyLearning': 'در حال یادگیری',
     'about.currentlyLearningDesc':
         'بهبود معماری پروژه‌های Flutter، تست‌نویسی و الگوهای طراحی API.',
@@ -219,7 +212,7 @@ const Map<String, Map<String, String>> kTranslations = {
     'contact.send': 'ارسال پیام',
     'contact.formNote': 'این فرم اطلاعات را به سرور نمی‌فرستد؛ فقط برنامه ایمیل پیش‌فرض شما را باز می‌کند.',
     'contact.openedEmail': 'برنامه ایمیل باز شد.',
-    'contact.emailNotConfigured': 'ایمیل تماس هنوز تنظیم نشده است. مقدار YOUR_EMAIL@example.com را در فایل‌های داده جایگزین کنید.',
+    'contact.emailNotConfigured': 'ایمیل تماس هنوز تنظیم نشده است.',
     'contact.sendFailed': 'باز کردن برنامه ایمیل ممکن نشد.',
     'contact.infoTitle': 'راه‌های ارتباطی',
     'contact.infoSubtitle':
@@ -228,8 +221,8 @@ const Map<String, Map<String, String>> kTranslations = {
     'contact.telegram': 'تلگرام',
     'contact.github': 'گیت‌هاب',
     'contact.linkedin': 'لینکدین',
-    'contact.availability': 'برای همکاری و پروژه‌های جدید باز هستم.',
-    'contact.placeholderNote': 'بعضی لینک‌ها نمونه هستند و باید در lib/data/content/contact_data.dart جایگزین شوند.',
+    'contact.linksNote':
+        'همه لینک‌های بالا فعال هستند؛ هر کدام را که راحت‌ترید انتخاب کنید.',
     'contact.validationName': 'نام را وارد کنید.',
     'contact.validationNameShort': 'نام باید حداقل ۲ حرف باشد.',
     'contact.validationEmail': 'ایمیل معتبر وارد کنید.',
@@ -266,7 +259,8 @@ const Map<String, Map<String, String>> kTranslations = {
     'footer.builtWith': 'ساخته‌شده با Flutter',
     'footer.rights': 'همه حقوق محفوظ است.',
     'footer.backToTop': 'بازگشت به بالا',
-    'footer.sampleNote': 'اطلاعات این سایت نمونه و قابل ویرایش است.',
+    'footer.visitNote':
+        'از بازدید شما سپاسگزارم؛ هر زمان خواستید در تماس باشید.',
     'footer.quickLinks': 'لینک‌های سریع',
     'footer.social': 'شبکه‌های اجتماعی',
     'notFound.title': 'صفحه پیدا نشد',
@@ -276,7 +270,7 @@ const Map<String, Map<String, String>> kTranslations = {
     'a11y.openMenu': 'باز کردن منو',
     'a11y.closeMenu': 'بستن منو',
     'a11y.scrollTop': 'بازگشت به بالا',
-    'a11y.profileImage': 'تصویر پروفایل نمونه',
+    'a11y.profileImage': 'تصویر پروفایل',
     'a11y.projectImage': 'تصویر نمونه پروژه',
     'a11y.sendMessage': 'ارسال پیام',
     'a11y.selectLanguage': 'انتخاب زبان',
@@ -284,7 +278,8 @@ const Map<String, Map<String, String>> kTranslations = {
     'a11y.placeholderLink': 'لینک نمونه — نیاز به تنظیم دارد',
   },
   'en': {
-    'meta.siteTitle': 'Danyal Khodai — Backend & Flutter Developer',
+    'meta.siteTitle':
+        'Danyal Khodai — Backend Developer | Python / Django | Flutter',
     'nav.home': 'Dashboard',
     'nav.about': 'About',
     'nav.projects': 'Projects',
@@ -346,7 +341,6 @@ const Map<String, Map<String, String>> kTranslations = {
     'common.dark': 'Dark',
     'common.system': 'System',
     'common.openInNewTab': 'Open in new tab',
-    'common.sampleBadge': 'Sample',
     'common.loading': 'Loading…',
     'common.retry': 'Try again',
     'common.back': 'Back',
@@ -358,9 +352,6 @@ const Map<String, Map<String, String>> kTranslations = {
     'status.prototype': 'Prototype',
     'status.concept': 'Concept',
     'dashboard.greeting': "Hi, I'm",
-    'dashboard.available': 'Open to collaboration',
-    'dashboard.role': 'Backend Developer | Flutter Developer',
-    'dashboard.bio': 'I build backends with Python and Django, and mobile interfaces with Flutter. I care about clean APIs, smooth experiences, and architecture that can grow.',
     'dashboard.cta': "If you have an idea for a product, an API, or an app, I'd be happy to talk about it.",
     'dashboard.whatIDo': 'What I do',
     'dashboard.focusApiTitle': 'API development',
@@ -380,13 +371,10 @@ const Map<String, Map<String, String>> kTranslations = {
     'dashboard.ctaTitle': 'Have an idea to build?',
     'dashboard.ctaDesc':
         'From a small API to a complete product, we can build it step by step.',
-    'dashboard.samplePortrait': 'Sample portrait — replaceable',
     'dashboard.quickLinks': 'Quick links',
     'about.title': 'About me',
     'about.subtitle': 'A little about my path, interests, and how I approach building software.',
     'about.introTitle': 'A developer, not just a title',
-    'about.bio1': "I'm Danyal, a developer who enjoys building the systems behind the scenes and the interfaces people actually use. Python, Django, and Flutter are my main tools.",
-    'about.bio2': 'I care more about code quality, continuous learning, and solving problems than about numbers or claims. This page contains sample content you can replace with your own story.',
     'about.journey': 'Learning journey',
     'about.journeySubtitle': 'The steps I have taken so far.',
     'about.journey1Title': 'Starting with Python',
@@ -421,7 +409,6 @@ const Map<String, Map<String, String>> kTranslations = {
     'about.principle3Title': 'Test',
     'about.principle3Desc':
         'Tests give me confidence that future changes will not break things.',
-    'about.portraitNote': 'This is a sample portrait, not a real photo of Danyal. Replace assets/images/profile.jpg to use your own.',
     'about.currentlyLearning': 'Currently learning',
     'about.currentlyLearningDesc': 'Improving Flutter project architecture, testing, and API design patterns.',
     'projects.title': 'Projects',
@@ -501,7 +488,7 @@ const Map<String, Map<String, String>> kTranslations = {
     'contact.send': 'Send message',
     'contact.formNote': 'This form sends nothing to a server; it only opens your default email app.',
     'contact.openedEmail': 'Your email app was opened.',
-    'contact.emailNotConfigured': 'Contact email is not configured yet. Replace YOUR_EMAIL@example.com in the data files.',
+    'contact.emailNotConfigured': 'Contact email is not configured yet.',
     'contact.sendFailed': 'Could not open your email app.',
     'contact.infoTitle': 'Contact details',
     'contact.infoSubtitle':
@@ -510,8 +497,8 @@ const Map<String, Map<String, String>> kTranslations = {
     'contact.telegram': 'Telegram',
     'contact.github': 'GitHub',
     'contact.linkedin': 'LinkedIn',
-    'contact.availability': "I'm open to collaboration and new projects.",
-    'contact.placeholderNote': 'Some links are placeholders. Replace them in lib/data/content/contact_data.dart.',
+    'contact.linksNote':
+        'All links above are active — use whichever works best for you.',
     'contact.validationName': 'Please enter your name.',
     'contact.validationNameShort': 'Name must be at least 2 characters.',
     'contact.validationEmail': 'Enter a valid email address.',
@@ -549,7 +536,8 @@ const Map<String, Map<String, String>> kTranslations = {
     'footer.builtWith': 'Built with Flutter',
     'footer.rights': 'All rights reserved.',
     'footer.backToTop': 'Back to top',
-    'footer.sampleNote': 'This site contains editable sample content.',
+    'footer.visitNote':
+        'Thanks for visiting. Feel free to get in touch any time.',
     'footer.quickLinks': 'Quick links',
     'footer.social': 'Social',
     'notFound.title': 'Page not found',
@@ -560,7 +548,7 @@ const Map<String, Map<String, String>> kTranslations = {
     'a11y.openMenu': 'Open menu',
     'a11y.closeMenu': 'Close menu',
     'a11y.scrollTop': 'Back to top',
-    'a11y.profileImage': 'Sample profile image',
+    'a11y.profileImage': 'Profile image',
     'a11y.projectImage': 'Sample project image',
     'a11y.sendMessage': 'Send message',
     'a11y.selectLanguage': 'Select language',

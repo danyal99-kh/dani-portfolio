@@ -1,11 +1,11 @@
 {
-    "name": "Danyal Khodai — Backend & Flutter Developer",
+    "name": "Danyal Khodai — Backend Developer | Python / Django | Flutter",
     "short_name": "Danyal Khodai",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#E3FDFD",
     "theme_color": "#395B64",
-    "description": "Portfolio, selected projects, case studies, skills, and resume of Danyal Khodai.",
+    "description": "Portfolio, selected projects, case studies, skills, and resume of Danyal Khodai, a backend and Flutter developer based in Saghez, Kurdistan, Iran.",
     "orientation": "any",
     "prefer_related_applications": false,
     "icons": [

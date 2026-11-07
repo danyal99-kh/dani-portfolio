@@ -45,7 +45,7 @@ class DashboardPage extends StatelessWidget {
               children: [
                 _HeroText(l10n: l10n),
                 const SizedBox(height: 40),
-                _HeroVisual(l10n: l10n),
+                const _HeroVisual(),
               ],
             )
           else
@@ -54,14 +54,14 @@ class DashboardPage extends StatelessWidget {
               children: [
                 Expanded(flex: 6, child: _HeroText(l10n: l10n)),
                 const SizedBox(width: 52),
-                Expanded(flex: 4, child: _HeroVisual(l10n: l10n)),
+                const Expanded(flex: 4, child: _HeroVisual()),
               ],
             ),
           SizedBox(height: context.sectionGap),
           RevealOnMount(
             child: SectionHeader(
               eyebrow: l10n.t('dashboard.whatIDo'),
-              title: l10n.t('dashboard.role'),
+              title: profile.role(l10n.isFa),
               subtitle: l10n.t('dashboard.cta'),
             ),
           ),
@@ -187,7 +187,7 @@ class _HeroText extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  l10n.t('dashboard.available'),
+                  profile.availability(l10n.isFa),
                   style: textTheme.labelSmall?.copyWith(
                     color: colors.success,
                     fontWeight: FontWeight.w700,
@@ -328,9 +328,7 @@ class _InfoItem extends StatelessWidget {
 }
 
 class _HeroVisual extends StatelessWidget {
-  const _HeroVisual({required this.l10n});
-
-  final AppLocalizations l10n;
+  const _HeroVisual();
 
   @override
   Widget build(BuildContext context) {
@@ -386,29 +384,20 @@ class _HeroVisual extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           CodePanel(
-            title: 'danyal.profile.dart',
+            title: '${profile.firstNameEn.toLowerCase()}.profile.dart',
             lines: [
               CodeLine(
                 '// ${profile.firstNameEn.toLowerCase()}.profile',
                 dim: true,
               ),
               CodeLine('const developer = {', color: colors.accent),
-              const CodeLine("  name: 'Danyal Khodai',"),
-              const CodeLine("  role: 'backend + flutter',"),
+              CodeLine("  name: '${profile.nameEn}',"),
+              CodeLine("  role: '${profile.roleEn}',"),
               const CodeLine("  stack: ['django', 'flutter'],"),
               const CodeLine("  focus: 'clean APIs',"),
               CodeLine('};', color: colors.accent),
               CodeLine('// open to collaboration', dim: true),
             ],
-          ),
-          const SizedBox(height: 10),
-          Text(
-            l10n.t('dashboard.samplePortrait'),
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: colors.muted.withValues(alpha: 0.8),
-              fontSize: 11,
-            ),
           ),
         ],
       ),

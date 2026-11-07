@@ -5,6 +5,7 @@ import '../../app/app_state.dart';
 import '../../app/localization/app_localizations.dart';
 import '../../app/navigation.dart';
 import '../../app/theme/app_colors.dart';
+import '../../data/content/profile_data.dart';
 import '../utils/responsive.dart';
 
 class AppHeader extends StatelessWidget {
@@ -104,6 +105,7 @@ class _LogoState extends State<_Logo> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final l10n = context.l10n;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
@@ -136,7 +138,7 @@ class _LogoState extends State<_Logo> {
               ),
               alignment: Alignment.center,
               child: Text(
-                'DK',
+                profile.initialsEn,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: context.isDark
                       ? const Color(0xFF152426)
@@ -148,24 +150,31 @@ class _LogoState extends State<_Logo> {
             ),
             if (!context.isMobile) ...[
               const SizedBox(width: 12),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Danyal Khodai',
-                    style: Theme.of(context).textTheme.titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w700),
-                  ),
-                  Text(
-                    'backend + flutter',
-                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: colors.muted,
-                      fontFamily: 'JetBrainsMono',
-                      fontSize: 10,
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 230),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      profile.name(l10n.isFa),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.titleSmall
+                          ?.copyWith(fontWeight: FontWeight.w700),
                     ),
-                  ),
-                ],
+                    Text(
+                      profile.role(l10n.isFa),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: colors.muted,
+                        fontFamily: 'JetBrainsMono',
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ],

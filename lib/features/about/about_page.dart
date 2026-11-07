@@ -10,6 +10,7 @@ import '../../core/widgets/profile_avatar.dart';
 import '../../core/widgets/responsive_grid.dart';
 import '../../core/widgets/reveal_on_mount.dart';
 import '../../core/widgets/section_header.dart';
+import '../../core/widgets/social_links_row.dart';
 import '../../core/widgets/tech_chip.dart';
 import '../../data/content/profile_data.dart';
 
@@ -212,19 +213,7 @@ class _PortraitCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 14),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: colors.surfaceAlt,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                l10n.t('about.portraitNote'),
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: colors.muted, fontSize: 11, height: 1.6),
-              ),
-            ),
+            SocialLinksRow(alignment: WrapAlignment.center),
           ],
         ),
       ),

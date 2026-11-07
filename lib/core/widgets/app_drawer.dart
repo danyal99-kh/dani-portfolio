@@ -46,7 +46,7 @@ class AppDrawer extends StatelessWidget {
                     ),
                     alignment: Alignment.center,
                     child: Text(
-                      'DK',
+                      profile.initialsEn,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: context.isDark
                             ? const Color(0xFF152426)
@@ -65,7 +65,7 @@ class AppDrawer extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         Text(
-                          l10n.t('dashboard.role'),
+                          profile.role(l10n.isFa),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall

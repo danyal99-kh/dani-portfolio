@@ -462,7 +462,7 @@ class _InfoCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      l10n.t('contact.placeholderNote'),
+                      l10n.t('contact.linksNote'),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: colors.muted,
                         fontSize: 10.5,

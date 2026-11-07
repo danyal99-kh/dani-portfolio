@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/localization/app_localizations.dart';
 import '../../app/theme/app_colors.dart';
+import '../../data/content/profile_data.dart';
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({
@@ -97,7 +98,7 @@ class ProfileAvatar extends StatelessWidget {
                       ),
                       const SizedBox(width: 7),
                       Text(
-                        l10n.t('common.sampleBadge'),
+                        profile.availability(l10n.isFa),
                         style: Theme.of(context).textTheme.labelSmall?.copyWith(
                           color: colors.muted,
                           fontWeight: FontWeight.w700,

@@ -11,6 +11,7 @@ import '../../core/widgets/app_button.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/reveal_on_mount.dart';
 import '../../core/widgets/section_header.dart';
+import '../../core/widgets/social_links_row.dart';
 import '../../core/widgets/tech_chip.dart';
 import '../../data/content/contact_data.dart';
 import '../../data/content/profile_data.dart';
@@ -123,7 +124,7 @@ class ResumePage extends StatelessWidget {
       }
       final ok = await downloadAssetFile(
         assetPath: profile.resumeAsset,
-        fileName: 'Danyal_Khodai_Resume.pdf',
+        fileName: profile.resumeFileName,
       );
       if (!context.mounted) return;
       showAppSnackBar(
@@ -285,15 +286,8 @@ class _SideColumn extends StatelessWidget {
                     fontFamily: 'JetBrainsMono',
                   ),
                 ),
-                const SizedBox(height: 6),
-                Text(
-                  l10n.t('contact.placeholderNote'),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: colors.muted.withValues(alpha: 0.8),
-                    fontSize: 10.5,
-                    height: 1.5,
-                  ),
-                ),
+                const SizedBox(height: 10),
+                const SocialLinksRow(),
                 const SizedBox(height: 12),
                 TextButton.icon(
                   onPressed: () => context.go('/contact'),
@@ -327,7 +321,7 @@ class _SideColumn extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Danyal_Khodai_Resume.pdf',
+                        profile.resumeFileName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.labelMedium

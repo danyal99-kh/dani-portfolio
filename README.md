@@ -48,15 +48,15 @@ when `main` is updated.
 
 ## Before publishing
 
-The app currently ships with sample content. Replace these values before
-publishing:
+The profile, biography, contact details, and social links are configured in
+`lib/data/content/profile_data.dart` and `lib/data/content/contact_data.dart`.
+Review the remaining sample content before publishing:
 
-- `lib/data/content/contact_data.dart`: email, GitHub, Telegram, and LinkedIn.
-- `lib/data/content/profile_data.dart`: name, tagline, bio, and availability.
-- `lib/data/content/projects_data.dart`: project details and case studies.
+- `lib/data/content/projects_data.dart`: project details, case studies, and
+  repository links.
 - `lib/data/content/resume_data.dart`: education, experience, and languages.
-- `assets/images/profile.jpg`: replace the placeholder profile image.
-- `assets/resume/Danyal_Khodai_Resume.pdf`: replace the sample PDF.
+- `assets/images/profile.jpg`: verify the profile photo.
+- `assets/resume/Danyal_Khodai_Resume.pdf`: verify the resume PDF.
 
 The contact form opens the visitor's email client through `mailto:`. It does
 not send data to a server. Placeholder links are detected and intentionally

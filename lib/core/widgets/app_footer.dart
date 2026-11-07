@@ -102,7 +102,7 @@ class AppFooter extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              l10n.t('footer.sampleNote'),
+              l10n.t('footer.visitNote'),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: colors.muted.withValues(alpha: 0.8),
                 fontSize: 11,
@@ -141,7 +141,7 @@ class _Brand extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Text(
-                'DK',
+                profile.initialsEn,
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
                   color: context.isDark
                       ? const Color(0xFF152426)
@@ -233,7 +233,7 @@ class _SocialBlock extends StatelessWidget {
         const SocialLinksRow(),
         const SizedBox(height: 12),
         Text(
-          l10n.t('contact.placeholderNote'),
+          l10n.t('contact.linksNote'),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: context.colors.muted,
             fontSize: 11,

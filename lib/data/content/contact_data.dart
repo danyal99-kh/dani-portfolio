@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../models/social_link.dart';
 
-/// All contact details live here. Placeholder values are intentional and are
-/// detected by the UI so they are never presented as working links.
-const String contactEmail = 'danyal.danyal13851@gmail.com';
+/// Central source of truth for email and social profile links.
+const String contactEmail = 'danyal.danyal1385@gmail.com';
 
 const List<SocialLink> socialLinks = [
   SocialLink(
@@ -32,7 +31,7 @@ const List<SocialLink> socialLinks = [
     id: 'linkedin',
     labelFa: 'لینکدین',
     labelEn: 'LinkedIn',
-    url: 'https://linkedin.com/in/danyal99-kh',
+    url: 'https://www.linkedin.com/in/danyal-khodaei-912795345/',
     icon: Icons.work_outline_rounded,
   ),
 ];
