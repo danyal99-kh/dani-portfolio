@@ -7,6 +7,7 @@ import '../../app/navigation.dart';
 import '../../app/theme/app_colors.dart';
 import '../../data/content/profile_data.dart';
 import '../utils/responsive.dart';
+import 'pressable_scale.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key, required this.location, required this.onMenuTap});
@@ -112,72 +113,75 @@ class _LogoState extends State<_Logo> {
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 180),
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [colors.accent, colors.accentStrong],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+        child: PressableScale(
+          scale: 0.97,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [colors.accent, colors.accentStrong],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: _hovered
+                      ? [
+                          BoxShadow(
+                            color: colors.accent.withValues(alpha: 0.3),
+                            blurRadius: 16,
+                            offset: const Offset(0, 5),
+                          ),
+                        ]
+                      : const [],
                 ),
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: _hovered
-                    ? [
-                        BoxShadow(
-                          color: colors.accent.withValues(alpha: 0.3),
-                          blurRadius: 16,
-                          offset: const Offset(0, 5),
-                        ),
-                      ]
-                    : const [],
-              ),
-              alignment: Alignment.center,
-              child: Text(
-                profile.initialsEn,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: context.isDark
-                      ? const Color(0xFF152426)
-                      : Colors.white,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 0.5,
+                alignment: Alignment.center,
+                child: Text(
+                  profile.initialsEn,
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: context.isDark
+                        ? const Color(0xFF152426)
+                        : Colors.white,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.5,
+                  ),
                 ),
               ),
-            ),
-            if (!context.isMobile) ...[
-              const SizedBox(width: 12),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 230),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      profile.name(l10n.isFa),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleSmall
-                          ?.copyWith(fontWeight: FontWeight.w700),
-                    ),
-                    Text(
-                      profile.role(l10n.isFa),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: colors.muted,
-                        fontFamily: 'JetBrainsMono',
-                        fontSize: 10,
+              if (!context.isMobile) ...[
+                const SizedBox(width: 12),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 230),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        profile.name(l10n.isFa),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleSmall
+                            ?.copyWith(fontWeight: FontWeight.w700),
                       ),
-                    ),
-                  ],
+                      Text(
+                        profile.role(l10n.isFa),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: colors.muted,
+                          fontFamily: 'JetBrainsMono',
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
@@ -213,33 +217,36 @@ class _NavButtonState extends State<_NavButton> {
       onExit: (_) => setState(() => _hovered = false),
       child: GestureDetector(
         onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 160),
-          margin: const EdgeInsets.symmetric(horizontal: 2),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-          decoration: BoxDecoration(
-            color: active
-                ? colors.accent.withValues(alpha: 0.14)
-                : (_hovered ? colors.surfaceAlt : Colors.transparent),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                widget.item.icon,
-                size: 15,
-                color: active ? colors.accent : colors.muted,
-              ),
-              const SizedBox(width: 6),
-              Text(
-                l10n.t(widget.item.labelKey),
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: active ? colors.accent : colors.text,
-                  fontWeight: active ? FontWeight.w700 : FontWeight.w500,
+        child: PressableScale(
+          scale: 0.97,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            margin: const EdgeInsets.symmetric(horizontal: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+            decoration: BoxDecoration(
+              color: active
+                  ? colors.accent.withValues(alpha: 0.14)
+                  : (_hovered ? colors.surfaceAlt : Colors.transparent),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  widget.item.icon,
+                  size: 15,
+                  color: active ? colors.accent : colors.muted,
                 ),
-              ),
-            ],
+                const SizedBox(width: 6),
+                Text(
+                  l10n.t(widget.item.labelKey),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: active ? colors.accent : colors.text,
+                    fontWeight: active ? FontWeight.w700 : FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -262,18 +269,36 @@ class _IconAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final reduceMotion = context.reduceMotion;
     return Tooltip(
       message: tooltip,
-      child: IconButton(
-        onPressed: onTap,
-        icon: Icon(icon, size: 20),
-        color: colors.text,
-        style: IconButton.styleFrom(
-          backgroundColor: colors.surfaceAlt,
-          minimumSize: const Size(44, 44),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: colors.border.withValues(alpha: 0.5)),
+      child: PressableScale(
+        scale: 0.92,
+        child: IconButton(
+          onPressed: onTap,
+          icon: AnimatedSwitcher(
+            duration: reduceMotion
+                ? Duration.zero
+                : const Duration(milliseconds: 220),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(
+                  scale: Tween<double>(begin: 0.8, end: 1).animate(animation),
+                  child: child,
+                ),
+              );
+            },
+            child: Icon(icon, key: ValueKey(icon), size: 20),
+          ),
+          color: colors.text,
+          style: IconButton.styleFrom(
+            backgroundColor: colors.surfaceAlt,
+            minimumSize: const Size(44, 44),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+              side: BorderSide(color: colors.border.withValues(alpha: 0.5)),
+            ),
           ),
         ),
       ),
@@ -290,31 +315,53 @@ class _LanguageAction extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final l10n = context.l10n;
+    final reduceMotion = context.reduceMotion;
     final target = l10n.isFa ? 'EN' : 'FA';
     return Padding(
       padding: const EdgeInsetsDirectional.only(start: 8),
       child: Tooltip(
         message: l10n.t('a11y.switchLanguage'),
-        child: InkWell(
-          key: const Key('language-toggle'),
-          onTap: appState.toggleLocale,
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            height: 44,
-            constraints: const BoxConstraints(minWidth: 46),
-            padding: const EdgeInsets.symmetric(horizontal: 11),
-            decoration: BoxDecoration(
-              color: colors.surfaceAlt,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: colors.border.withValues(alpha: 0.5)),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              target,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: colors.text,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 0.5,
+        child: PressableScale(
+          scale: 0.93,
+          child: InkWell(
+            key: const Key('language-toggle'),
+            onTap: appState.toggleLocale,
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              height: 44,
+              constraints: const BoxConstraints(minWidth: 46),
+              padding: const EdgeInsets.symmetric(horizontal: 11),
+              decoration: BoxDecoration(
+                color: colors.surfaceAlt,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: colors.border.withValues(alpha: 0.5)),
+              ),
+              alignment: Alignment.center,
+              child: AnimatedSwitcher(
+                duration: reduceMotion
+                    ? Duration.zero
+                    : const Duration(milliseconds: 200),
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: ScaleTransition(
+                      scale: Tween<double>(
+                        begin: 0.86,
+                        end: 1,
+                      ).animate(animation),
+                      child: child,
+                    ),
+                  );
+                },
+                child: Text(
+                  target,
+                  key: ValueKey(target),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: colors.text,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.5,
+                  ),
+                ),
               ),
             ),
           ),

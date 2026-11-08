@@ -39,8 +39,516 @@
 
   <title>Danyal Khodai — Backend Developer | Python / Django | Flutter</title>
   <link rel="manifest" href="manifest.json">
+
+  <script>
+    (function () {
+      function readPreference(suffix) {
+        try {
+          for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (!key || !key.endsWith(suffix)) continue;
+            var value = localStorage.getItem(key);
+            if (!value) continue;
+            return value.replace(/^"(.*)"$/, '$1');
+          }
+        } catch (_) {}
+        return null;
+      }
+
+      var locale = readPreference('portfolio.locale');
+      var theme = readPreference('portfolio.theme');
+      var isFa = locale !== 'en';
+      var isDark =
+        theme === 'dark' ||
+        (theme !== 'light' &&
+          window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+      document.documentElement.lang = isFa ? 'fa' : 'en';
+      document.documentElement.dir = isFa ? 'rtl' : 'ltr';
+      document.documentElement.dataset.locale = isFa ? 'fa' : 'en';
+      document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+
+      var themeColor = document.querySelector('meta[name="theme-color"]');
+      if (themeColor) {
+        themeColor.setAttribute('content', isDark ? '#2C3333' : '#E3FDFD');
+      }
+    })();
+  </script>
+
+  <style>
+    @font-face {
+      font-family: 'JetBrainsMono';
+      src: url('assets/assets/fonts/JetBrainsMono.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/assets/fonts/Vazirmatn.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: light;
+      --boot-background: #e3fdfd;
+      --boot-surface: #cbf1f5;
+      --boot-surface-alt: #ddf7f9;
+      --boot-code: #f4fefe;
+      --boot-text: #17383b;
+      --boot-muted: #4b6e72;
+      --boot-accent: #3e8e93;
+      --boot-accent-strong: #71c9ce;
+      --boot-border: #9ad9de;
+      --boot-success: #2e7d63;
+      --boot-danger: #b3413e;
+      --boot-warning: #9a6b12;
+      --boot-shadow: rgba(23, 56, 59, 0.16);
+    }
+
+    :root[data-theme='dark'] {
+      color-scheme: dark;
+      --boot-background: #2c3333;
+      --boot-surface: #395b64;
+      --boot-surface-alt: #324a52;
+      --boot-code: #24302f;
+      --boot-text: #e7f6f2;
+      --boot-muted: #a9c2c4;
+      --boot-accent: #a5c9ca;
+      --boot-accent-strong: #71c9ce;
+      --boot-border: #527e88;
+      --boot-success: #7bd8b4;
+      --boot-danger: #f08c88;
+      --boot-warning: #f2c86b;
+      --boot-shadow: rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background: var(--boot-background);
+      color: var(--boot-text);
+      font-family: 'JetBrainsMono', 'Vazirmatn', 'Tahoma', ui-monospace,
+        'SFMono-Regular', Menlo, Consolas, 'Courier New', monospace;
+    }
+
+    body {
+      overflow: hidden;
+    }
+
+    #boot-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 24px 20px;
+      overflow: auto;
+      background:
+        radial-gradient(
+          circle at 92% -8%,
+          color-mix(in srgb, var(--boot-accent) 14%, transparent) 0,
+          transparent 38%
+        ),
+        radial-gradient(
+          circle at 4% 110%,
+          color-mix(in srgb, var(--boot-accent-strong) 12%, transparent) 0,
+          transparent 40%
+        ),
+        linear-gradient(
+          180deg,
+          var(--boot-background) 0%,
+          color-mix(in srgb, var(--boot-background) 55%, var(--boot-surface-alt))
+            48%,
+          var(--boot-background) 100%
+        );
+      opacity: 1;
+      transition: opacity 260ms ease;
+    }
+
+    #boot-shell::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(
+          to right,
+          color-mix(in srgb, var(--boot-accent) 10%, transparent) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          to bottom,
+          color-mix(in srgb, var(--boot-accent) 10%, transparent) 1px,
+          transparent 1px
+        );
+      background-size: 64px 64px;
+      mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    }
+
+    #boot-shell.boot-shell--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .boot-panel {
+      position: relative;
+      width: min(100%, 640px);
+      overflow: hidden;
+      border: 1px solid
+        color-mix(in srgb, var(--boot-accent) 34%, transparent);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--boot-code) 97%, transparent);
+      box-shadow:
+        0 16px 30px var(--boot-shadow),
+        0 6px 34px color-mix(in srgb, var(--boot-accent) 10%, transparent);
+      opacity: 0;
+      transform: scale(0.96);
+      animation: bootPanel 480ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .boot-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 39px;
+      padding: 10px 14px;
+      border-bottom: 1px solid
+        color-mix(in srgb, var(--boot-border) 45%, transparent);
+      background: color-mix(in srgb, var(--boot-surface-alt) 78%, transparent);
+    }
+
+    .boot-dot {
+      width: 9px;
+      height: 9px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+
+    .boot-dot:nth-child(1) {
+      background: var(--boot-danger);
+    }
+
+    .boot-dot:nth-child(2) {
+      background: var(--boot-warning);
+    }
+
+    .boot-dot:nth-child(3) {
+      background: var(--boot-success);
+    }
+
+    .boot-window-title {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      color: var(--boot-muted);
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .boot-glyph {
+      color: color-mix(in srgb, var(--boot-accent) 75%, transparent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .boot-body {
+      padding: 18px;
+    }
+
+    .boot-name {
+      color: var(--boot-accent);
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      line-height: 1.35;
+    }
+
+    .boot-subtitle {
+      margin-top: 2px;
+      color: var(--boot-muted);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.11em;
+    }
+
+    .boot-divider {
+      height: 1px;
+      margin: 14px 0;
+      background: color-mix(in srgb, var(--boot-border) 55%, transparent);
+    }
+
+    .boot-lines {
+      display: grid;
+      gap: 7px;
+    }
+
+    .boot-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      min-height: 18px;
+      color: var(--boot-text);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.55;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: bootLine 220ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-delay: calc(180ms + var(--i, 0) * 105ms);
+    }
+
+    .boot-prompt {
+      flex: 0 0 auto;
+      color: var(--boot-accent);
+      font-weight: 700;
+    }
+
+    .boot-line-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .boot-cursor {
+      display: inline-block;
+      width: 7px;
+      height: 15px;
+      margin-top: 3px;
+      flex: 0 0 auto;
+      border-radius: 1.5px;
+      background: var(--boot-accent);
+      animation: bootBlink 820ms step-end infinite;
+    }
+
+    .boot-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .boot-track {
+      position: relative;
+      flex: 1;
+      height: 4px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--boot-accent) 12%, transparent);
+    }
+
+    .boot-progress-bar {
+      position: absolute;
+      inset-block: 0;
+      width: 36%;
+      border-radius: inherit;
+      background: var(--boot-accent);
+      animation: bootProgress 1250ms ease-in-out infinite;
+    }
+
+    .boot-status {
+      flex: 0 0 auto;
+      color: var(--boot-muted);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    [data-locale='fa'] .boot-en,
+    [data-locale='en'] .boot-fa {
+      display: none;
+    }
+
+    @keyframes bootPanel {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bootLine {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bootBlink {
+      0%,
+      49% {
+        opacity: 1;
+      }
+      50%,
+      100% {
+        opacity: 0.2;
+      }
+    }
+
+    @keyframes bootProgress {
+      0% {
+        inset-inline-start: -38%;
+      }
+      100% {
+        inset-inline-start: 102%;
+      }
+    }
+
+    @media (min-width: 600px) {
+      #boot-shell {
+        padding: 32px;
+      }
+
+      .boot-body {
+        padding: 24px;
+      }
+
+      .boot-name {
+        font-size: 22px;
+      }
+
+      .boot-subtitle {
+        font-size: 11px;
+      }
+
+      .boot-line {
+        font-size: 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #boot-shell {
+        transition: none;
+      }
+
+      .boot-panel,
+      .boot-line {
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+
+      .boot-progress-bar {
+        inset-inline-start: 0;
+        width: 100%;
+        animation: none;
+        opacity: 0.3;
+      }
+
+      .boot-cursor {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div id="boot-shell" role="status" aria-live="polite" aria-label="Portfolio initialization terminal">
+    <div class="boot-panel">
+      <div class="boot-bar">
+        <span class="boot-dot"></span>
+        <span class="boot-dot"></span>
+        <span class="boot-dot"></span>
+        <span class="boot-window-title">danyal@portfolio:~</span>
+        <span class="boot-glyph" aria-hidden="true">&gt;_</span>
+      </div>
+      <div class="boot-body">
+        <div class="boot-name">
+          <span class="boot-fa">دانیال خدایی</span>
+          <span class="boot-en">DANYAL KHODAI</span>
+        </div>
+        <div class="boot-subtitle">
+          <span class="boot-fa">سیستم نمونه‌کار شخصی</span>
+          <span class="boot-en">PERSONAL PORTFOLIO SYSTEM</span>
+        </div>
+        <div class="boot-divider"></div>
+        <div class="boot-lines">
+          <div class="boot-line" style="--i: 0">
+            <span class="boot-prompt">&gt;</span>
+            <span class="boot-line-text">
+              <span class="boot-fa">راه‌اندازی نمونه‌کار...</span>
+              <span class="boot-en">Initializing portfolio...</span>
+            </span>
+          </div>
+          <div class="boot-line" style="--i: 1">
+            <span class="boot-prompt">&gt;</span>
+            <span class="boot-line-text">
+              <span class="boot-fa">بارگذاری پروفایل توسعه‌دهنده...</span>
+              <span class="boot-en">Loading developer profile...</span>
+            </span>
+          </div>
+          <div class="boot-line" style="--i: 2">
+            <span class="boot-prompt">&gt;</span>
+            <span class="boot-line-text">
+              <span class="boot-fa">آماده‌سازی پروژه‌ها...</span>
+              <span class="boot-en">Preparing projects...</span>
+            </span>
+          </div>
+          <div class="boot-line" style="--i: 3">
+            <span class="boot-prompt">&gt;</span>
+            <span class="boot-line-text">
+              <span class="boot-fa">راه‌اندازی رابط کاربری...</span>
+              <span class="boot-en">Initializing interface...</span>
+            </span>
+          </div>
+          <div class="boot-line" style="--i: 4">
+            <span class="boot-prompt">&gt;</span>
+            <span class="boot-line-text">
+              <span class="boot-fa">بارگذاری منابع...</span>
+              <span class="boot-en">Loading resources...</span>
+            </span>
+          </div>
+          <div class="boot-line" style="--i: 5">
+            <span class="boot-prompt">&gt;</span>
+            <span class="boot-line-text">
+              <span class="boot-fa">بررسی وضعیت برنامه...</span>
+              <span class="boot-en">Checking application state...</span>
+            </span>
+            <span class="boot-cursor" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="boot-progress">
+          <div class="boot-track"><span class="boot-progress-bar"></span></div>
+          <span class="boot-status">
+            <span class="boot-fa">در حال راه‌اندازی</span>
+            <span class="boot-en">INITIALIZING</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var shell = document.getElementById('boot-shell');
+      var removed = false;
+
+      function removeShell() {
+        if (removed || !shell) return;
+        removed = true;
+        shell.classList.add('boot-shell--hidden');
+        window.setTimeout(function () {
+          if (shell && shell.parentNode) shell.parentNode.removeChild(shell);
+        }, 300);
+      }
+
+      window.addEventListener('flutter-first-frame', removeShell, { once: true });
+      window.setTimeout(removeShell, 10000);
+    })();
+  </script>
+
   <!--
     You can customize the "flutter_bootstrap.js" script.
     This is useful to provide a custom configuration to the Flutter loader

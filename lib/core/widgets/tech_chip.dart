@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../utils/responsive.dart';
+import 'pressable_scale.dart';
 
 class TechChip extends StatelessWidget {
   const TechChip({
@@ -28,7 +30,12 @@ class TechChip extends StatelessWidget {
     final tone = accentColor ?? colors.accent;
     final accented = accentColor != null;
     final highlighted = selected || accented;
-    final content = Container(
+    final reduceMotion = context.reduceMotion;
+    final content = AnimatedContainer(
+      duration: reduceMotion
+          ? Duration.zero
+          : const Duration(milliseconds: 180),
+      curve: Curves.easeOutCubic,
       padding: EdgeInsets.symmetric(
         horizontal: compact ? 10 : 13,
         vertical: compact ? 6 : 8,
@@ -103,7 +110,10 @@ class TechChip extends StatelessWidget {
       label: label,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
-        child: GestureDetector(onTap: onTap, child: content),
+        child: GestureDetector(
+          onTap: onTap,
+          child: PressableScale(scale: 0.96, child: content),
+        ),
       ),
     );
   }

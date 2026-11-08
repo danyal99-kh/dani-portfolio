@@ -5,6 +5,7 @@ import 'app/app_state.dart';
 import 'app/localization/app_localizations.dart';
 import 'app/router/app_router.dart';
 import 'app/theme/app_theme.dart';
+import 'core/widgets/terminal_welcome_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,10 +18,12 @@ class PortfolioApp extends StatefulWidget {
     super.key,
     required this.state,
     this.initialLocation = '/',
+    this.showWelcome = true,
   });
 
   final AppState state;
   final String initialLocation;
+  final bool showWelcome;
 
   @override
   State<PortfolioApp> createState() => _PortfolioAppState();
@@ -28,6 +31,17 @@ class PortfolioApp extends StatefulWidget {
 
 class _PortfolioAppState extends State<PortfolioApp> {
   late final _router = buildRouter(initialLocation: widget.initialLocation);
+  late bool _showWelcome;
+  bool _appReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _showWelcome = widget.showWelcome;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) setState(() => _appReady = true);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +66,33 @@ class _PortfolioAppState extends State<PortfolioApp> {
               GlobalCupertinoLocalizations.delegate,
             ],
             onGenerateTitle: (context) => context.l10n.t('meta.siteTitle'),
+            builder: (context, child) {
+              final content = child ?? const SizedBox.shrink();
+              return Stack(
+                fit: StackFit.expand,
+                children: [
+                  ExcludeFocus(
+                    excluding: _showWelcome,
+                    child: ExcludeSemantics(
+                      excluding: _showWelcome,
+                      child: IgnorePointer(
+                        ignoring: _showWelcome,
+                        child: content,
+                      ),
+                    ),
+                  ),
+                  if (_showWelcome)
+                    Positioned.fill(
+                      child: TerminalWelcomeScreen(
+                        isReady: _appReady,
+                        onFinished: () {
+                          if (mounted) setState(() => _showWelcome = false);
+                        },
+                      ),
+                    ),
+                ],
+              );
+            },
           ),
         );
       },

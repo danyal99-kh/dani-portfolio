@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../utils/responsive.dart';
+import 'pressable_scale.dart';
 
 enum AppButtonVariant { primary, secondary, ghost }
 
@@ -39,6 +41,8 @@ class _AppButtonState extends State<AppButton> {
         ? (context.isDark ? const Color(0xFF152426) : Colors.white)
         : colors.text;
     final active = _hovered || _focused;
+    final reduceMotion = context.reduceMotion;
+    final isRtl = Directionality.of(context) == TextDirection.rtl;
 
     final decoration = BoxDecoration(
       gradient: isPrimary
@@ -66,12 +70,16 @@ class _AppButtonState extends State<AppButton> {
                   ? Colors.transparent
                   : colors.border.withValues(alpha: active ? 0.95 : 0.6),
             ),
-      boxShadow: isPrimary && active
+      boxShadow: active
           ? [
               BoxShadow(
-                color: colors.accent.withValues(alpha: 0.28),
-                blurRadius: 18,
-                offset: const Offset(0, 7),
+                color: isPrimary
+                    ? colors.accent.withValues(alpha: 0.28)
+                    : Colors.black.withValues(
+                        alpha: context.isDark ? 0.18 : 0.07,
+                      ),
+                blurRadius: isPrimary ? 18 : 12,
+                offset: const Offset(0, 6),
               ),
             ]
           : const [],
@@ -97,7 +105,16 @@ class _AppButtonState extends State<AppButton> {
         ),
         if (widget.icon != null && widget.trailingIcon) ...[
           const SizedBox(width: 10),
-          Icon(widget.icon, size: 19, color: foreground),
+          AnimatedSlide(
+            offset: reduceMotion || !active
+                ? Offset.zero
+                : Offset(isRtl ? -0.08 : 0.08, 0),
+            duration: reduceMotion
+                ? Duration.zero
+                : const Duration(milliseconds: 180),
+            curve: Curves.easeOutCubic,
+            child: Icon(widget.icon, size: 19, color: foreground),
+          ),
         ],
       ],
     );
@@ -123,28 +140,37 @@ class _AppButtonState extends State<AppButton> {
               : SystemMouseCursors.click,
           onEnter: (_) => setState(() => _hovered = true),
           onExit: (_) => setState(() => _hovered = false),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            curve: Curves.easeOutCubic,
-            transform: Matrix4.translationValues(0, active ? -2 : 0, 0),
-            constraints: const BoxConstraints(minHeight: 50),
-            decoration: decoration,
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(14),
-              child: InkWell(
-                onTap: widget.onPressed,
+          child: PressableScale(
+            enabled: widget.onPressed != null,
+            child: AnimatedContainer(
+              duration: reduceMotion
+                  ? Duration.zero
+                  : const Duration(milliseconds: 180),
+              curve: Curves.easeOutCubic,
+              transform: Matrix4.translationValues(
+                0,
+                reduceMotion || !active ? 0 : -2,
+                0,
+              ),
+              constraints: const BoxConstraints(minHeight: 50),
+              decoration: decoration,
+              child: Material(
+                color: Colors.transparent,
                 borderRadius: BorderRadius.circular(14),
-                splashColor: foreground.withValues(alpha: 0.12),
-                highlightColor: foreground.withValues(alpha: 0.06),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 22,
-                    vertical: 14,
+                child: InkWell(
+                  onTap: widget.onPressed,
+                  borderRadius: BorderRadius.circular(14),
+                  splashColor: foreground.withValues(alpha: 0.12),
+                  highlightColor: foreground.withValues(alpha: 0.06),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 22,
+                      vertical: 14,
+                    ),
+                    child: widget.expand
+                        ? content
+                        : IntrinsicWidth(child: content),
                   ),
-                  child: widget.expand
-                      ? content
-                      : IntrinsicWidth(child: content),
                 ),
               ),
             ),

@@ -10,10 +10,16 @@ import 'status_badge.dart';
 import 'tech_chip.dart';
 
 class ProjectCard extends StatefulWidget {
-  const ProjectCard({super.key, required this.project, required this.index});
+  const ProjectCard({
+    super.key,
+    required this.project,
+    required this.index,
+    this.entrance,
+  });
 
   final Project project;
   final int index;
+  final Animation<double>? entrance;
 
   @override
   State<ProjectCard> createState() => _ProjectCardState();
@@ -106,6 +112,9 @@ class _ProjectCardState extends State<ProjectCard> {
                         index: widget.index,
                         accent: accent,
                         active: _active,
+                        entrance:
+                            widget.entrance ??
+                            const AlwaysStoppedAnimation<double>(1),
                       ),
                       _ProjectInfo(
                         project: project,
@@ -131,12 +140,14 @@ class _ProjectCover extends StatelessWidget {
     required this.index,
     required this.accent,
     required this.active,
+    required this.entrance,
   });
 
   final Project project;
   final int index;
   final Color accent;
   final bool active;
+  final Animation<double> entrance;
 
   @override
   Widget build(BuildContext context) {
@@ -157,16 +168,25 @@ class _ProjectCover extends StatelessWidget {
           ColoredBox(
             color: accent.withValues(alpha: context.isDark ? 0.2 : 0.1),
           ),
-          AnimatedScale(
-            scale: reduceMotion || !active ? 1 : 1.035,
-            duration: reduceMotion
-                ? Duration.zero
-                : const Duration(milliseconds: 480),
-            curve: Curves.easeOutCubic,
-            child: AppImage(
-              asset: project.imageAsset,
-              borderRadius: 0,
-              semanticLabel: project.name,
+          ScaleTransition(
+            scale: entrance
+                .drive(
+                  CurveTween(
+                    curve: Interval(0, 0.8, curve: Curves.easeOutCubic),
+                  ),
+                )
+                .drive(Tween<double>(begin: 1.045, end: 1)),
+            child: AnimatedScale(
+              scale: reduceMotion || !active ? 1 : 1.035,
+              duration: reduceMotion
+                  ? Duration.zero
+                  : const Duration(milliseconds: 480),
+              curve: Curves.easeOutCubic,
+              child: AppImage(
+                asset: project.imageAsset,
+                borderRadius: 0,
+                semanticLabel: project.name,
+              ),
             ),
           ),
           PositionedDirectional(

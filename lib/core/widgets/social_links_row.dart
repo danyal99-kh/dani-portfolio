@@ -6,6 +6,7 @@ import '../../app/theme/app_colors.dart';
 import '../../data/content/contact_data.dart';
 import '../../data/models/social_link.dart';
 import '../utils/link_service.dart';
+import 'pressable_scale.dart';
 
 class SocialLinksRow extends StatelessWidget {
   const SocialLinksRow({
@@ -115,7 +116,7 @@ class _SocialButtonState extends State<_SocialButton> {
                   ? LaunchMode.platformDefault
                   : LaunchMode.externalApplication,
             ),
-            child: content,
+            child: PressableScale(scale: 0.94, child: content),
           ),
         ),
       ),

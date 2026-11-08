@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../app/localization/app_localizations.dart';
 import '../../app/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
+import '../../core/widgets/animated_project_card.dart';
 import '../../core/widgets/empty_state.dart';
-import '../../core/widgets/project_card.dart';
 import '../../core/widgets/responsive_grid.dart';
 import '../../core/widgets/reveal_on_mount.dart';
 import '../../core/widgets/section_header.dart';
@@ -145,12 +145,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     spacing: 22,
                     children: [
                       for (var i = 0; i < filtered.length; i++)
-                        RevealOnMount(
-                          delay: Duration(milliseconds: 60 * i),
-                          child: ProjectCard(
-                            project: filtered[i],
-                            index: projects.indexOf(filtered[i]),
-                          ),
+                        AnimatedProjectCard(
+                          project: filtered[i],
+                          index: projects.indexOf(filtered[i]),
+                          delay: Duration(milliseconds: 80 * i),
                         ),
                     ],
                   ),

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/widgets/portfolio_shell.dart';
@@ -11,6 +10,7 @@ import '../../features/not_found_page.dart';
 import '../../features/projects/projects_page.dart';
 import '../../features/resume/resume_page.dart';
 import '../../features/skills/skills_page.dart';
+import 'page_transition.dart';
 
 GoRouter buildRouter({String initialLocation = '/'}) {
   return GoRouter(
@@ -25,43 +25,45 @@ GoRouter buildRouter({String initialLocation = '/'}) {
           GoRoute(
             path: '/',
             pageBuilder: (context, state) =>
-                _fadePage(state, const DashboardPage()),
+                buildPortfolioPage(state: state, child: const DashboardPage()),
           ),
           GoRoute(
             path: '/about',
             pageBuilder: (context, state) =>
-                _fadePage(state, const AboutPage()),
+                buildPortfolioPage(state: state, child: const AboutPage()),
           ),
           GoRoute(
             path: '/projects',
             pageBuilder: (context, state) =>
-                _fadePage(state, const ProjectsPage()),
+                buildPortfolioPage(state: state, child: const ProjectsPage()),
           ),
           GoRoute(
             path: '/projects/:id',
-            pageBuilder: (context, state) => _fadePage(
-              state,
-              CaseStudyPage(projectId: state.pathParameters['id'] ?? ''),
+            pageBuilder: (context, state) => buildPortfolioPage(
+              state: state,
+              motion: PageMotion.caseStudy,
+              child: CaseStudyPage(projectId: state.pathParameters['id'] ?? ''),
             ),
           ),
           GoRoute(
             path: '/skills',
             pageBuilder: (context, state) =>
-                _fadePage(state, const SkillsPage()),
+                buildPortfolioPage(state: state, child: const SkillsPage()),
           ),
           GoRoute(
             path: '/resume',
             pageBuilder: (context, state) =>
-                _fadePage(state, const ResumePage()),
+                buildPortfolioPage(state: state, child: const ResumePage()),
           ),
           GoRoute(
             path: '/contact',
             pageBuilder: (context, state) =>
-                _fadePage(state, const ContactPage()),
+                buildPortfolioPage(state: state, child: const ContactPage()),
           ),
           GoRoute(
             path: '/game',
-            pageBuilder: (context, state) => _fadePage(state, const GamePage()),
+            pageBuilder: (context, state) =>
+                buildPortfolioPage(state: state, child: const GamePage()),
           ),
         ],
       ),
@@ -70,33 +72,6 @@ GoRouter buildRouter({String initialLocation = '/'}) {
       return PortfolioShell(
         location: state.uri.path,
         child: const NotFoundPage(),
-      );
-    },
-  );
-}
-
-CustomTransitionPage<void> _fadePage(GoRouterState state, Widget child) {
-  return CustomTransitionPage<void>(
-    key: state.pageKey,
-    child: child,
-    transitionDuration: const Duration(milliseconds: 300),
-    reverseTransitionDuration: const Duration(milliseconds: 220),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      if (MediaQuery.maybeDisableAnimationsOf(context) ?? false) return child;
-      final curved = CurvedAnimation(
-        parent: animation,
-        curve: Curves.easeOutCubic,
-        reverseCurve: Curves.easeInCubic,
-      );
-      return FadeTransition(
-        opacity: curved,
-        child: SlideTransition(
-          position: Tween<Offset>(
-            begin: const Offset(0, 0.025),
-            end: Offset.zero,
-          ).animate(curved),
-          child: child,
-        ),
       );
     },
   );

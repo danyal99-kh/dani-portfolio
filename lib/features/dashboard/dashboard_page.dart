@@ -5,11 +5,11 @@ import '../../app/localization/app_localizations.dart';
 import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_theme.dart';
 import '../../core/utils/responsive.dart';
+import '../../core/widgets/animated_project_card.dart';
 import '../../core/widgets/app_button.dart';
 import '../../core/widgets/code_panel.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/profile_avatar.dart';
-import '../../core/widgets/project_card.dart';
 import '../../core/widgets/responsive_grid.dart';
 import '../../core/widgets/reveal_on_mount.dart';
 import '../../core/widgets/section_header.dart';
@@ -120,9 +120,10 @@ class DashboardPage extends StatelessWidget {
             maxColumns: 2,
             children: [
               for (var i = 0; i < featuredProjects.length; i++)
-                RevealOnMount(
-                  delay: Duration(milliseconds: 70 * i),
-                  child: ProjectCard(project: featuredProjects[i], index: i),
+                AnimatedProjectCard(
+                  project: featuredProjects[i],
+                  index: i,
+                  delay: Duration(milliseconds: 90 * i),
                 ),
             ],
           ),

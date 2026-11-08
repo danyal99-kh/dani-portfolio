@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../utils/responsive.dart';
+import 'pressable_scale.dart';
 
 class HoverCard extends StatefulWidget {
   const HoverCard({
@@ -41,15 +43,18 @@ class _HoverCardState extends State<HoverCard> {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final reduceMotion = context.reduceMotion;
     final radius = BorderRadius.circular(widget.borderRadius);
     final interactive = widget.onTap != null;
 
     final card = AnimatedContainer(
-      duration: const Duration(milliseconds: 220),
+      duration: reduceMotion
+          ? Duration.zero
+          : const Duration(milliseconds: 220),
       curve: Curves.easeOutCubic,
       transform: Matrix4.translationValues(
         0,
-        widget.lift && _hovered ? -5 : 0,
+        widget.lift && _hovered && !reduceMotion ? -5 : 0,
         0,
       ),
       transformAlignment: Alignment.center,
@@ -100,7 +105,7 @@ class _HoverCardState extends State<HoverCard> {
           child: InkWell(
             onTap: widget.onTap,
             borderRadius: radius,
-            child: card,
+            child: PressableScale(child: card),
           ),
         ),
       ),
