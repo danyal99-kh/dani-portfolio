@@ -366,28 +366,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: colors.surfaceAlt,
-              borderRadius: BorderRadius.circular(14),
-              border: Border.all(color: colors.border.withValues(alpha: 0.5)),
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(Icons.info_outline_rounded, size: 18, color: colors.muted),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    l10n.t('case.sampleNote'),
-                    style: Theme.of(context).textTheme.bodySmall
-                        ?.copyWith(color: colors.muted, height: 1.6),
-                  ),
-                ),
-              ],
-            ),
-          ),
+
           const SizedBox(height: 28),
           _ProjectPager(previous: previous, next: next),
         ],

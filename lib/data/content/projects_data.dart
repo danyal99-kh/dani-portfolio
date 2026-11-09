@@ -26,7 +26,7 @@ const List<Project> projects = [
     roleEn: 'Full-stack development — Flutter UI and API',
     timelineFa: 'در حال توسعه',
     timelineEn: 'In progress',
-    repoUrl: 'https://github.com/YOUR_USERNAME/lawin',
+    repoUrl: 'https://github.com/danyal99-kh/Lawin.git',
     caseStudy: CaseStudy(
       introFa: 'Lawin تلاش می‌کند ابزارهای پراکنده‌ی مدیریت یک کافه را در یک رابط یکپارچه جمع کند. این مطالعه موردی محتوای نمونه است و جزئیات آن قابل ویرایش است.',
       introEn: 'Lawin aims to bring the scattered tools of running a cafe into one interface. This case study is sample content and can be edited.',
@@ -84,7 +84,7 @@ const List<Project> projects = [
     roleEn: 'App development and API integration',
     timelineFa: 'نمونه اولیه',
     timelineEn: 'Prototype',
-    repoUrl: 'https://github.com/YOUR_USERNAME/azmode',
+    repoUrl: 'https://github.com/danyal99-kh/Azmode.git',
     caseStudy: CaseStudy(
       introFa: 'Azmode برای تمرین ساخت یک تجربه فروشگاهی موبایل طراحی شده است؛ از دریافت داده محصول تا نمایش آن در رابط کاربری.',
       introEn: 'Azmode was designed to practise building a mobile shopping experience, from fetching product data to presenting it in the interface.',
@@ -137,7 +137,7 @@ const List<Project> projects = [
     roleEn: 'Interface development and API integration',
     timelineFa: 'نمونه اولیه',
     timelineEn: 'Prototype',
-    repoUrl: 'https://github.com/YOUR_USERNAME/flutter-chatbot',
+    repoUrl: 'https://github.com/danyal99-kh/WisQu.git',
     caseStudy: CaseStudy(
       introFa: 'این پروژه برای تمرین ساخت یک رابط مکالمه‌ای ساده و قابل توسعه ساخته شده است.',
       introEn: 'This project was built to practise creating a simple, extensible conversational interface.',
@@ -184,7 +184,7 @@ const List<Project> projects = [
     roleEn: 'Interface design and development',
     timelineFa: 'ایده / نمونه',
     timelineEn: 'Concept / sample',
-    repoUrl: 'https://github.com/YOUR_USERNAME/language-learning',
+    repoUrl: 'https://github.com/mehrdadfbx/linguaa.git',
     caseStudy: CaseStudy(
       introFa:
           'هدف این پروژه تمرین طراحی یک تجربه یادگیری ساده و قابل گسترش است.',
@@ -232,7 +232,7 @@ const List<Project> projects = [
     roleEn: 'App design and development',
     timelineFa: 'نمونه اولیه',
     timelineEn: 'Prototype',
-    repoUrl: 'https://github.com/YOUR_USERNAME/personal-accounting',
+    repoUrl: 'https://github.com/danyal99-kh/FiNiZER1.git',
     caseStudy: CaseStudy(
       introFa: 'این پروژه یک نمونه برای ثبت ساده تراکنش‌ها و مشاهده خلاصه اطلاعات مالی است.',
       introEn: 'This project is a sample for simple transaction entry and viewing a summary of financial data.',
