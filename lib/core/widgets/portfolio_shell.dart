@@ -50,7 +50,7 @@ class _PortfolioShellState extends State<PortfolioShell> {
       jump();
     } else {
       // بعد از ناپدید شدن صفحه قبلی (زمان خروج ۱۴۰ms)
-      Future<void>.delayed(const Duration(milliseconds: 90), jump);
+      Future<void>.delayed(const Duration(milliseconds: 110), jump);
     }
   }
 
