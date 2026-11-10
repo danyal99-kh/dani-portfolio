@@ -11,7 +11,7 @@ import '../../core/widgets/code_panel.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/profile_avatar.dart';
 import '../../core/widgets/responsive_grid.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/social_links_row.dart';
 import '../../core/widgets/tech_chip.dart';
@@ -58,7 +58,7 @@ class DashboardPage extends StatelessWidget {
               ],
             ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: SectionHeader(
               eyebrow: l10n.t('dashboard.whatIDo'),
               title: profile.role(l10n.isFa),
@@ -70,7 +70,7 @@ class DashboardPage extends StatelessWidget {
             minItemWidth: 250,
             maxColumns: 3,
             children: [
-              RevealOnMount(
+              RevealOnVisible(
                 delay: const Duration(milliseconds: 60),
                 child: _FocusCard(
                   icon: Icons.api_rounded,
@@ -79,7 +79,7 @@ class DashboardPage extends StatelessWidget {
                   accent: colors.accent,
                 ),
               ),
-              RevealOnMount(
+              RevealOnVisible(
                 delay: const Duration(milliseconds: 120),
                 child: _FocusCard(
                   icon: Icons.phone_iphone_rounded,
@@ -88,7 +88,7 @@ class DashboardPage extends StatelessWidget {
                   accent: colors.accentStrong,
                 ),
               ),
-              RevealOnMount(
+              RevealOnVisible(
                 delay: const Duration(milliseconds: 180),
                 child: _FocusCard(
                   icon: Icons.account_tree_rounded,
@@ -100,7 +100,7 @@ class DashboardPage extends StatelessWidget {
             ],
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: SectionHeader(
               eyebrow: l10n.t('common.featured'),
               title: l10n.t('dashboard.selectedWork'),
@@ -131,22 +131,34 @@ class DashboardPage extends StatelessWidget {
           if (context.isMobile)
             Column(
               children: [
-                _ToolboxCard(l10n: l10n),
+                RevealOnVisible(child: _ToolboxCard(l10n: l10n)),
                 const SizedBox(height: 20),
-                _ResumeCard(l10n: l10n),
+                RevealOnVisible(
+                  delay: const Duration(milliseconds: 100),
+                  child: _ResumeCard(l10n: l10n),
+                ),
               ],
             )
           else
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 6, child: _ToolboxCard(l10n: l10n)),
+                Expanded(
+                  flex: 6,
+                  child: RevealOnVisible(child: _ToolboxCard(l10n: l10n)),
+                ),
                 const SizedBox(width: 20),
-                Expanded(flex: 4, child: _ResumeCard(l10n: l10n)),
+                Expanded(
+                  flex: 4,
+                  child: RevealOnVisible(
+                    delay: const Duration(milliseconds: 120),
+                    child: _ResumeCard(l10n: l10n),
+                  ),
+                ),
               ],
             ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(child: _CtaBanner(l10n: l10n)),
+          RevealOnVisible(child: _CtaBanner(l10n: l10n)),
         ],
       ),
     );
@@ -167,7 +179,7 @@ class _HeroText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        RevealOnMount(
+        RevealOnVisible(
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
             decoration: BoxDecoration(
@@ -199,7 +211,7 @@ class _HeroText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 60),
           child: Text(
             l10n.t('dashboard.greeting'),
@@ -210,7 +222,7 @@ class _HeroText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 2),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 90),
           child: ShaderMask(
             shaderCallback: (bounds) {
@@ -231,7 +243,7 @@ class _HeroText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 130),
           child: Text(
             profile.role(isFa),
@@ -243,7 +255,7 @@ class _HeroText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 14),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 170),
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 620),
@@ -254,7 +266,7 @@ class _HeroText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 26),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 210),
           child: Wrap(
             spacing: 12,
@@ -282,7 +294,7 @@ class _HeroText extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 250),
           child: Wrap(
             spacing: 18,
@@ -335,7 +347,7 @@ class _HeroVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final avatarSize = context.isMobile ? 240.0 : 300.0;
-    return RevealOnMount(
+    return RevealOnVisible(
       delay: const Duration(milliseconds: 120),
       offset: const Offset(0.04, 0.04),
       child: Column(
@@ -552,7 +564,13 @@ class _ToolboxCard extends StatelessWidget {
             spacing: 7,
             runSpacing: 7,
             children: [
-              for (final name in names) TechChip(label: name, compact: true),
+              for (var i = 0; i < names.length; i++)
+                RevealOnVisible(
+                  delay: Duration(milliseconds: 40 * i),
+                  duration: const Duration(milliseconds: 420),
+                  offset: const Offset(0, 0.35),
+                  child: TechChip(label: names[i], compact: true),
+                ),
             ],
           ),
           const SizedBox(height: 16),

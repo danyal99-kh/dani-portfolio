@@ -11,7 +11,7 @@ import '../../core/widgets/app_image.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/responsive_grid.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/status_badge.dart';
 import '../../core/widgets/tech_chip.dart';
 import '../../data/content/projects_data.dart';
@@ -90,7 +90,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-          RevealOnMount(
+          RevealOnVisible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -182,7 +182,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 28),
-          RevealOnMount(
+          RevealOnVisible(
             delay: const Duration(milliseconds: 80),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(24),
@@ -221,7 +221,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '01',
               title: l10n.t('case.overview'),
@@ -237,7 +237,7 @@ class _CaseStudyContent extends StatelessWidget {
             minItemWidth: 320,
             maxColumns: 2,
             children: [
-              RevealOnMount(
+              RevealOnVisible(
                 child: _TextCard(
                   icon: Icons.report_problem_outlined,
                   title: l10n.t('case.problem'),
@@ -245,7 +245,7 @@ class _CaseStudyContent extends StatelessWidget {
                   accent: colors.warning,
                 ),
               ),
-              RevealOnMount(
+              RevealOnVisible(
                 delay: const Duration(milliseconds: 70),
                 child: _TextCard(
                   icon: Icons.lightbulb_outline_rounded,
@@ -257,7 +257,7 @@ class _CaseStudyContent extends StatelessWidget {
             ],
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '02',
               title: l10n.t('case.highlights'),
@@ -296,7 +296,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '03',
               title: l10n.t('case.architecture'),
@@ -323,7 +323,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '04',
               title: l10n.t('case.challenges'),
@@ -336,7 +336,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '05',
               title: l10n.t('case.techStack'),
@@ -350,7 +350,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '06',
               title: l10n.t('case.gallery'),
@@ -358,7 +358,7 @@ class _CaseStudyContent extends StatelessWidget {
             ),
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _SectionBlock(
               number: '07',
               title: l10n.t('case.links'),

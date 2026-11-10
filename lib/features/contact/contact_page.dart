@@ -6,7 +6,7 @@ import '../../app/theme/app_colors.dart';
 import '../../core/utils/link_service.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/widgets/app_button.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/social_links_row.dart';
 import '../../data/content/contact_data.dart';
@@ -214,7 +214,7 @@ class _FormCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colors = context.colors;
-    return RevealOnMount(
+    return RevealOnVisible(
       child: Container(
         padding: EdgeInsets.all(context.isMobile ? 20 : 26),
         decoration: BoxDecoration(
@@ -387,7 +387,7 @@ class _InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colors = context.colors;
-    return RevealOnMount(
+    return RevealOnVisible(
       delay: const Duration(milliseconds: 100),
       child: Container(
         padding: EdgeInsets.all(context.isMobile ? 20 : 26),

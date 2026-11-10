@@ -5,7 +5,7 @@ import '../../app/theme/app_colors.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/responsive_grid.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/tech_chip.dart';
 import '../../data/content/skills_data.dart';
@@ -38,7 +38,7 @@ class SkillsPage extends StatelessWidget {
             icon: Icons.auto_awesome_outlined,
           ),
           const SizedBox(height: 20),
-          RevealOnMount(
+          RevealOnVisible(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
               decoration: BoxDecoration(
@@ -77,7 +77,7 @@ class SkillsPage extends StatelessWidget {
             ),
           ],
           SizedBox(height: context.sectionGap),
-          RevealOnMount(child: _LearningCard(isFa: isFa)),
+          RevealOnVisible(child: _LearningCard(isFa: isFa)),
         ],
       ),
     );
@@ -109,7 +109,7 @@ class _CategorySection extends StatelessWidget {
     final isFa = l10n.isFa;
     final items = skills.where((skill) => skill.category == category).toList();
 
-    return RevealOnMount(
+    return RevealOnVisible(
       delay: Duration(milliseconds: 50 * index),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../data/models/project.dart';
 import '../utils/responsive.dart';
 import 'project_card.dart';
+import 'welcome_gate.dart';
 
 class AnimatedProjectCard extends StatefulWidget {
   const AnimatedProjectCard({
@@ -32,7 +33,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard>
   bool _visible = false;
   bool _checkScheduled = false;
   bool _reduceMotion = false;
-
+  bool _blocked = false;
   @override
   void initState() {
     super.initState();
@@ -50,6 +51,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _blocked = WelcomeGate.isActive(context);
     final reduceMotion = context.reduceMotion;
     if (reduceMotion != _reduceMotion) {
       _reduceMotion = reduceMotion;
@@ -95,7 +97,12 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard>
   }
 
   void _checkVisibility() {
-    if (_started || !mounted) return;
+    if (_started || !mounted || _blocked) return;
+    final routeValue = ModalRoute.of(context)?.animation?.value ?? 1.0;
+    if (routeValue < 0.6) {
+      _scheduleCheck();
+      return;
+    }
     final renderObject = context.findRenderObject();
     if (renderObject is! RenderBox || !renderObject.attached) {
       _scheduleCheck();

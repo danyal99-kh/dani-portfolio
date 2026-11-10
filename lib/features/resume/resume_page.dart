@@ -9,7 +9,7 @@ import '../../core/utils/link_service.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/widgets/app_button.dart';
 import '../../core/widgets/hover_card.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/social_links_row.dart';
 import '../../core/widgets/tech_chip.dart';
@@ -47,7 +47,7 @@ class ResumePage extends StatelessWidget {
             icon: Icons.description_outlined,
           ),
           const SizedBox(height: 20),
-          RevealOnMount(
+          RevealOnVisible(
             child: Wrap(
               spacing: 12,
               runSpacing: 12,
@@ -151,7 +151,7 @@ class _MainColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        RevealOnMount(
+        RevealOnVisible(
           child: _ResumeSection(
             title: l10n.t('resume.professionalSummary'),
             icon: Icons.person_outline_rounded,
@@ -163,7 +163,7 @@ class _MainColumn extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 60),
           child: _ResumeSection(
             title: l10n.t('resume.experience'),
@@ -181,7 +181,7 @@ class _MainColumn extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 120),
           child: _ResumeSection(
             title: l10n.t('resume.education'),
@@ -199,7 +199,7 @@ class _MainColumn extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 180),
           child: _ResumeSection(
             title: l10n.t('resume.selectedProjects'),
@@ -233,7 +233,7 @@ class _SideColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 80),
           child: _ResumeSection(
             title: l10n.t('resume.skills'),
@@ -248,7 +248,7 @@ class _SideColumn extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 140),
           child: _ResumeSection(
             title: l10n.t('resume.languages'),
@@ -271,7 +271,7 @@ class _SideColumn extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 200),
           child: _ResumeSection(
             title: l10n.t('contact.infoTitle'),
@@ -299,7 +299,7 @@ class _SideColumn extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 18),
-        RevealOnMount(
+        RevealOnVisible(
           delay: const Duration(milliseconds: 260),
           child: Container(
             padding: const EdgeInsets.all(18),

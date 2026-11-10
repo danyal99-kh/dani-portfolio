@@ -39,9 +39,18 @@ class _PortfolioShellState extends State<PortfolioShell> {
   @override
   void didUpdateWidget(covariant PortfolioShell oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.location != widget.location) {
-      _menuOpen = false;
-      if (_scrollController.hasClients) _scrollController.jumpTo(0);
+    if (oldWidget.location == widget.location) return;
+
+    void jump() {
+      if (!mounted || !_scrollController.hasClients) return;
+      _scrollController.jumpTo(0);
+    }
+
+    if (MediaQuery.maybeDisableAnimationsOf(context) ?? false) {
+      jump();
+    } else {
+      // بعد از ناپدید شدن صفحه قبلی (زمان خروج ۱۴۰ms)
+      Future<void>.delayed(const Duration(milliseconds: 90), jump);
     }
   }
 

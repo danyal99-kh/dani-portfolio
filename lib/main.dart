@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'core/widgets/welcome_gate.dart';
+
 import 'app/app_state.dart';
 import 'app/localization/app_localizations.dart';
 import 'app/router/app_router.dart';
@@ -77,7 +79,10 @@ class _PortfolioAppState extends State<PortfolioApp> {
                       excluding: _showWelcome,
                       child: IgnorePointer(
                         ignoring: _showWelcome,
-                        child: content,
+                        child: WelcomeGate(
+                          active: _showWelcome,
+                          child: content,
+                        ),
                       ),
                     ),
                   ),

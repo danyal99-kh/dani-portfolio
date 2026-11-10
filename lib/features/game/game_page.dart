@@ -8,7 +8,7 @@ import '../../app/theme/app_colors.dart';
 import '../../app/theme/app_theme.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/widgets/app_button.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 
 enum _GamePhase { idle, playing, over }
@@ -236,7 +236,7 @@ class _GameBoard extends StatelessWidget {
     final l10n = context.l10n;
     final colors = context.colors;
 
-    return RevealOnMount(
+    return RevealOnVisible(
       child: Container(
         padding: EdgeInsets.all(context.isMobile ? 16 : 20),
         decoration: BoxDecoration(
@@ -577,7 +577,7 @@ class _SidePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return RevealOnMount(
+    return RevealOnVisible(
       delay: const Duration(milliseconds: 100),
       child: Container(
         padding: const EdgeInsets.all(20),

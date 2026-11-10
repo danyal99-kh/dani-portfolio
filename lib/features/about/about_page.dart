@@ -8,7 +8,7 @@ import '../../core/widgets/app_button.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/profile_avatar.dart';
 import '../../core/widgets/responsive_grid.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/social_links_row.dart';
 import '../../core/widgets/tech_chip.dart';
@@ -60,7 +60,7 @@ class AboutPage extends StatelessWidget {
               ],
             ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: SectionHeader(
               eyebrow: l10n.t('about.journey'),
               title: l10n.t('about.journey'),
@@ -70,7 +70,7 @@ class AboutPage extends StatelessWidget {
           const SizedBox(height: 28),
           _JourneyTimeline(l10n: l10n),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: SectionHeader(
               eyebrow: l10n.t('about.interests'),
               title: l10n.t('about.interests'),
@@ -89,7 +89,7 @@ class AboutPage extends StatelessWidget {
             ],
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: SectionHeader(
               eyebrow: l10n.t('about.goals'),
               title: l10n.t('about.goals'),
@@ -101,7 +101,7 @@ class AboutPage extends StatelessWidget {
             maxColumns: 3,
             children: [
               for (var i = 1; i <= 3; i++)
-                RevealOnMount(
+                RevealOnVisible(
                   delay: Duration(milliseconds: 60 * i),
                   child: _InfoCard(
                     icon: _goalIcons[i - 1],
@@ -113,7 +113,7 @@ class AboutPage extends StatelessWidget {
             ],
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: SectionHeader(
               eyebrow: l10n.t('about.principles'),
               title: l10n.t('about.principles'),
@@ -125,7 +125,7 @@ class AboutPage extends StatelessWidget {
             maxColumns: 3,
             children: [
               for (var i = 1; i <= 3; i++)
-                RevealOnMount(
+                RevealOnVisible(
                   delay: Duration(milliseconds: 60 * i),
                   child: _PrincipleCard(
                     index: i,
@@ -136,7 +136,7 @@ class AboutPage extends StatelessWidget {
             ],
           ),
           SizedBox(height: context.sectionGap),
-          RevealOnMount(
+          RevealOnVisible(
             child: _LearningBanner(l10n: l10n, isFa: isFa),
           ),
         ],
@@ -174,7 +174,7 @@ class _PortraitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    return RevealOnMount(
+    return RevealOnVisible(
       child: HoverCard(
         padding: const EdgeInsets.all(22),
         child: Column(
@@ -230,7 +230,7 @@ class _BioSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     final isFa = l10n.isFa;
-    return RevealOnMount(
+    return RevealOnVisible(
       delay: const Duration(milliseconds: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -315,7 +315,7 @@ class _JourneyTimeline extends StatelessWidget {
     return Column(
       children: [
         for (var i = 1; i <= 4; i++)
-          RevealOnMount(
+          RevealOnVisible(
             delay: Duration(milliseconds: 60 * i),
             child: _TimelineRow(
               index: i,

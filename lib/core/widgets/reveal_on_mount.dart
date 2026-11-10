@@ -4,8 +4,8 @@ import '../utils/responsive.dart';
 
 /// A small, lifecycle-safe entrance animation. It respects the operating
 /// system's "reduce motion" setting and never runs forever.
-class RevealOnMount extends StatefulWidget {
-  const RevealOnMount({
+class RevealOnVisible extends StatefulWidget {
+  const RevealOnVisible({
     super.key,
     required this.child,
     this.delay = Duration.zero,
@@ -19,10 +19,10 @@ class RevealOnMount extends StatefulWidget {
   final Offset offset;
 
   @override
-  State<RevealOnMount> createState() => _RevealOnMountState();
+  State<RevealOnVisible> createState() => _RevealOnVisibleState();
 }
 
-class _RevealOnMountState extends State<RevealOnMount>
+class _RevealOnVisibleState extends State<RevealOnVisible>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _fade;

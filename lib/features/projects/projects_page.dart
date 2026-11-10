@@ -6,7 +6,7 @@ import '../../core/utils/responsive.dart';
 import '../../core/widgets/animated_project_card.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../core/widgets/responsive_grid.dart';
-import '../../core/widgets/reveal_on_mount.dart';
+import '../../core/widgets/reveal_on_visible.dart';
 import '../../core/widgets/section_header.dart';
 import '../../core/widgets/tech_chip.dart';
 import '../../data/content/projects_data.dart';
@@ -76,7 +76,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
             icon: Icons.work_outline_rounded,
           ),
           const SizedBox(height: 28),
-          RevealOnMount(
+          RevealOnVisible(
             child: _FilterPanel(
               controller: _searchController,
               query: _query,
