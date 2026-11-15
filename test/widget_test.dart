@@ -4,12 +4,20 @@ import 'package:daniweb/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+void enableReducedMotion(WidgetTester tester) {
+  tester.platformDispatcher.accessibilityFeaturesTestValue =
+      const FakeAccessibilityFeatures(disableAnimations: true);
+
+  addTearDown(tester.platformDispatcher.clearAccessibilityFeaturesTestValue);
+}
+
 void main() {
   testWidgets('dashboard renders profile content', (tester) async {
     tester.view.physicalSize = const Size(1440, 1000);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    enableReducedMotion(tester);
 
     await tester.pumpWidget(
       PortfolioApp(state: AppState(), showWelcome: false),
@@ -24,6 +32,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    enableReducedMotion(tester);
 
     await tester.pumpWidget(
       PortfolioApp(
@@ -45,7 +54,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-
+    enableReducedMotion(tester);
     final state = AppState();
     await tester.pumpWidget(PortfolioApp(state: state, showWelcome: false));
     await tester.pumpAndSettle();
@@ -69,6 +78,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    enableReducedMotion(tester);
 
     await tester.pumpWidget(
       PortfolioApp(state: AppState(), showWelcome: false),
@@ -149,6 +159,7 @@ void _registerRouteSmokeTests() {
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
+      enableReducedMotion(tester);
 
       await tester.pumpWidget(
         PortfolioApp(
@@ -183,6 +194,7 @@ void _registerMobileSmokeTests() {
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
+      enableReducedMotion(tester);
 
       await tester.pumpWidget(
         PortfolioApp(
