@@ -631,140 +631,17 @@ class _Gallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    final colors = context.colors;
-    final isFa = l10n.isFa;
-
     return ResponsiveGrid(
       minItemWidth: 320,
       maxColumns: 2,
       children: [
-        AdaptiveImage(
-          asset: project.imageAsset,
-          borderRadius: 18,
-          maxHeight: 460,
-        ),
-        Container(
-          height: 230,
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: colors.codeBackground,
-            borderRadius: BorderRadius.circular(18),
-            border: Border.all(color: colors.border.withValues(alpha: 0.5)),
+        for (final asset in project.caseStudy.gallery)
+          AppImage(
+            asset: asset,
+            height: 230,
+            width: double.infinity,
+            borderRadius: 18,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: colors.success,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 7),
-                  Text(
-                    '${project.name.toLowerCase().replaceAll(' ', '-')}.ui',
-                    style: AppTheme.mono(color: colors.muted, size: 11),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 14),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: colors.surface,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.phone_iphone_rounded,
-                      size: 17,
-                      color: colors.accent,
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        project.category(isFa),
-                        style: Theme.of(context).textTheme.labelSmall
-                            ?.copyWith(color: colors.muted),
-                      ),
-                    ),
-                    Container(
-                      width: 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: colors.accent,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              Expanded(
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: colors.surface,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 7,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          color: colors.accent.withValues(alpha: 0.4),
-                          borderRadius: BorderRadius.circular(99),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        height: 6,
-                        width: 180,
-                        decoration: BoxDecoration(
-                          color: colors.border.withValues(alpha: 0.6),
-                          borderRadius: BorderRadius.circular(99),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Container(
-                        height: 6,
-                        width: 140,
-                        decoration: BoxDecoration(
-                          color: colors.border.withValues(alpha: 0.4),
-                          borderRadius: BorderRadius.circular(99),
-                        ),
-                      ),
-                      const Spacer(),
-                      Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: Icon(
-                          Icons.touch_app_outlined,
-                          size: 18,
-                          color: colors.muted,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                l10n.t('common.sampleContent'),
-                style: Theme.of(context).textTheme.bodySmall
-                    ?.copyWith(color: colors.muted, fontSize: 10),
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }

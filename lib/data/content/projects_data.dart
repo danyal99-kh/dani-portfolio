@@ -58,7 +58,7 @@ const List<Project> projects = [
           descriptionEn: 'Sections for inventory and financial information.',
         ),
       ],
-      gallery: ['assets/images/lawin.jpg'],
+      gallery: ['assets/images/lawin.jpg', 'assets/images/lawin2.jpg'],
     ),
   ),
   Project(
@@ -117,7 +117,7 @@ const List<Project> projects = [
               'Planning token authentication for further development.',
         ),
       ],
-      gallery: ['assets/images/azmode.jpg'],
+      gallery: ['assets/images/azmode.jpg', 'assets/images/azmode.jpg'],
     ),
   ),
   Project(
@@ -163,7 +163,7 @@ const List<Project> projects = [
           descriptionEn: 'Showing message send and receive states.',
         ),
       ],
-      gallery: ['assets/images/chatbot.jpg'],
+      gallery: ['assets/images/chatbot.jpg', 'assets/images/chatbot2.jpg'],
     ),
   ),
   Project(
@@ -211,7 +211,7 @@ const List<Project> projects = [
           descriptionEn: 'Designed for small screens and touch interaction.',
         ),
       ],
-      gallery: ['assets/images/language.jpg'],
+      gallery: ['assets/images/language.jpg', 'assets/images/language2.jpg'],
     ),
   ),
   Project(
@@ -258,7 +258,10 @@ const List<Project> projects = [
           descriptionEn: 'Storing information on the device.',
         ),
       ],
-      gallery: ['assets/images/accounting.jpg'],
+      gallery: [
+        'assets/images/accounting.jpg',
+        'assets/images/accounting2.jpg',
+      ],
     ),
   ),
 ];
