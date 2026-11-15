@@ -59,15 +59,11 @@ const List<ResumeEntry> resumeEducation = [
   ResumeEntry(
     titleFa: 'تحصیلات دانشگاهی',
     titleEn: 'University education',
-    organizationFa: 'اینجا رشته و دانشگاه خود را بنویسید',
-    organizationEn: 'Add your degree and university here',
-    periodFa: 'نمونه — قابل ویرایش',
-    periodEn: 'Sample — editable',
-    bulletsFa: [
-      'این مورد یک جای‌نگهدار است و باید با اطلاعات واقعی جایگزین شود.',
-    ],
-    bulletsEn: [
-      'This entry is a placeholder and should be replaced with real information.',
-    ],
+    organizationFa: 'رشته کامپیوتر در دانشگاه پیامنور',
+    organizationEn: 'Computer Science at Payame Noor University',
+    periodFa: 'در حال حاضر',
+    periodEn: 'Present',
+    bulletsFa: [''],
+    bulletsEn: [''],
   ),
 ];

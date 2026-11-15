@@ -58,37 +58,6 @@ class ResumePage extends StatelessWidget {
                   onPressed: () => _downloadResume(context),
                   icon: Icons.download_rounded,
                 ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colors.warning.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: colors.warning.withValues(alpha: 0.3),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.info_outline_rounded,
-                        size: 15,
-                        color: colors.warning,
-                      ),
-                      const SizedBox(width: 7),
-                      Flexible(
-                        child: Text(
-                          l10n.t('resume.sampleNotice'),
-                          style: Theme.of(context).textTheme.bodySmall
-                              ?.copyWith(color: colors.warning, fontSize: 11),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
