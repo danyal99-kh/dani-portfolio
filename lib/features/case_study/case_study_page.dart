@@ -4,11 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/localization/app_localizations.dart';
 import '../../app/theme/app_colors.dart';
-import '../../app/theme/app_theme.dart';
 import '../../core/utils/link_service.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/widgets/app_button.dart';
-import '../../core/widgets/app_image.dart';
 import '../../core/widgets/empty_state.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/responsive_grid.dart';

@@ -29,7 +29,7 @@ class _ImageSizeCache {
           completer.complete(size);
           stream.removeListener(listener);
         },
-        onError: (_, __) {
+        onError: (_, _) {
           completer.complete(null);
           stream.removeListener(listener);
         },

@@ -7,7 +7,6 @@ import '../../app/theme/app_theme.dart';
 import '../../core/utils/responsive.dart';
 import '../../core/widgets/animated_project_card.dart';
 import '../../core/widgets/app_button.dart';
-import '../../core/widgets/code_panel.dart';
 import '../../core/widgets/hover_card.dart';
 import '../../core/widgets/profile_avatar.dart';
 import '../../core/widgets/responsive_grid.dart';

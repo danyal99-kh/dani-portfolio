@@ -27,7 +27,6 @@ class ResumePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final colors = context.colors;
 
     return ContentContainer(
       maxWidth: 1120,
