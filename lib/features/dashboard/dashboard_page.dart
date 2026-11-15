@@ -395,23 +395,6 @@ class _HeroVisual extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 24),
-          CodePanel(
-            title: '${profile.firstNameEn.toLowerCase()}.profile.dart',
-            lines: [
-              CodeLine(
-                '// ${profile.firstNameEn.toLowerCase()}.profile',
-                dim: true,
-              ),
-              CodeLine('const developer = {', color: colors.accent),
-              CodeLine("  name: '${profile.nameEn}',"),
-              CodeLine("  role: '${profile.roleEn}',"),
-              const CodeLine("  stack: ['django', 'flutter'],"),
-              const CodeLine("  focus: 'clean APIs',"),
-              CodeLine('};', color: colors.accent),
-              CodeLine('// open to collaboration', dim: true),
-            ],
-          ),
         ],
       ),
     );

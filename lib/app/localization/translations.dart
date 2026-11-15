@@ -84,7 +84,7 @@ const Map<String, Map<String, String>> kTranslations = {
     'dashboard.focusArchDesc': 'ساختاردهی پروژه‌ها، جداسازی مسئولیت‌ها و انتخاب ابزارهای مناسب برای رشد بلندمدت.',
     'dashboard.selectedWork': 'پروژه‌های منتخب',
     'dashboard.selectedWorkSubtitle':
-        'چند نمونه از کارهایی که روی آن‌ها تمرین و تجربه کسب کرده‌ام.',
+        'چند نمونه از کارهایی که روی آن‌ها تجربه کسب کرده‌ام.',
     'dashboard.techStack': 'جعبه‌ابزار',
     'dashboard.techStackSubtitle': 'فناوری‌هایی که در پروژه‌ها استفاده می‌کنم.',
     'dashboard.codeComment': '// ساخت چیزی که ارزش استفاده دارد',
@@ -141,7 +141,7 @@ const Map<String, Map<String, String>> kTranslations = {
     'about.currentlyLearningDesc':
         'بهبود معماری پروژه‌های Flutter، تست‌نویسی و الگوهای طراحی API.',
     'projects.title': 'پروژه‌ها',
-    'projects.subtitle': 'نمونه‌هایی از پروژه‌های شخصی و تمرینی؛ محتوای هر کارت از فایل‌های داده خوانده می‌شود.',
+    'projects.subtitle': 'نمونه‌هایی از پروژه‌های شخصی و تمرینی .',
     'projects.searchHint': 'جست‌وجو در نام، توضیح یا فناوری…',
     'projects.showing': 'نمایش {count} پروژه',
     'projects.cardNumber': 'پروژه {number}',

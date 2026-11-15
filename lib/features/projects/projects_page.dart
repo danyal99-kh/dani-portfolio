@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/localization/app_localizations.dart';
@@ -20,33 +21,21 @@ class ProjectsPage extends StatefulWidget {
 }
 
 class _ProjectsPageState extends State<ProjectsPage> {
-  final _searchController = TextEditingController();
-  String _query = '';
   String? _tech;
   ProjectStatus? _status;
 
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
   List<Project> get _filtered {
     return projects.where((project) {
-      if (!project.matches(_query)) return false;
       if (_tech != null && !project.tech.contains(_tech)) return false;
       if (_status != null && project.status != _status) return false;
       return true;
     }).toList();
   }
 
-  bool get _hasFilters =>
-      _query.trim().isNotEmpty || _tech != null || _status != null;
+  bool get _hasFilters => _tech != null || _status != null;
 
   void _clearFilters() {
-    _searchController.clear();
     setState(() {
-      _query = '';
       _tech = null;
       _status = null;
     });
@@ -78,12 +67,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
           const SizedBox(height: 28),
           RevealOnVisible(
             child: _FilterPanel(
-              controller: _searchController,
-              query: _query,
               tech: _tech,
               status: _status,
               hasFilters: _hasFilters,
-              onQueryChanged: (value) => setState(() => _query = value),
               onTechChanged: (value) => setState(() {
                 _tech = _tech == value ? null : value;
               }),
@@ -138,7 +124,7 @@ class _ProjectsPageState extends State<ProjectsPage> {
                   )
                 : ResponsiveGrid(
                     key: ValueKey(
-                      '${_query}_${_tech}_${_status?.name}_${filtered.length}',
+                      '${_tech}_${_status?.name}_${filtered.length}',
                     ),
                     minItemWidth: 340,
                     maxColumns: 2,
@@ -161,23 +147,17 @@ class _ProjectsPageState extends State<ProjectsPage> {
 
 class _FilterPanel extends StatelessWidget {
   const _FilterPanel({
-    required this.controller,
-    required this.query,
     required this.tech,
     required this.status,
     required this.hasFilters,
-    required this.onQueryChanged,
     required this.onTechChanged,
     required this.onStatusChanged,
     required this.onClear,
   });
 
-  final TextEditingController controller;
-  final String query;
   final String? tech;
   final ProjectStatus? status;
   final bool hasFilters;
-  final ValueChanged<String> onQueryChanged;
   final ValueChanged<String> onTechChanged;
   final ValueChanged<ProjectStatus> onStatusChanged;
   final VoidCallback onClear;
@@ -188,7 +168,7 @@ class _FilterPanel extends StatelessWidget {
     final colors = context.colors;
 
     return Container(
-      padding: EdgeInsets.all(context.isMobile ? 18 : 22),
+      padding: EdgeInsets.symmetric(vertical: context.isMobile ? 18 : 22),
       decoration: BoxDecoration(
         color: colors.surface,
         borderRadius: BorderRadius.circular(22),
@@ -197,40 +177,15 @@ class _FilterPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextField(
-            key: const Key('project-search'),
-            controller: controller,
-            onChanged: onQueryChanged,
-            textInputAction: TextInputAction.search,
-            decoration: InputDecoration(
-              hintText: l10n.t('projects.searchHint'),
-              prefixIcon: const Icon(Icons.search_rounded, size: 20),
-              suffixIcon: query.isEmpty
-                  ? null
-                  : IconButton(
-                      tooltip: l10n.t('common.clearFilters'),
-                      onPressed: () {
-                        controller.clear();
-                        onQueryChanged('');
-                      },
-                      icon: const Icon(Icons.close_rounded, size: 18),
-                    ),
-            ),
-          ),
-          const SizedBox(height: 18),
-          Text(
-            l10n.t('common.filterByTech'),
-            style: Theme.of(context).textTheme.labelMedium
-                ?.copyWith(color: colors.muted, fontWeight: FontWeight.w700),
-          ),
+          _FilterLabel(text: l10n.t('common.filterByTech')),
           const SizedBox(height: 9),
-          Wrap(
-            spacing: 7,
-            runSpacing: 7,
+          _ScrollableChipRow(
             children: [
               TechChip(
                 label: l10n.t('common.all'),
                 selected: tech == null,
+                inline: true,
+                compact: true,
                 onTap: () {
                   if (tech != null) onTechChanged(tech!);
                 },
@@ -239,24 +194,22 @@ class _FilterPanel extends StatelessWidget {
                 TechChip(
                   label: item,
                   selected: tech == item,
+                  inline: true,
+                  compact: true,
                   onTap: () => onTechChanged(item),
                 ),
             ],
           ),
           const SizedBox(height: 16),
-          Text(
-            l10n.t('projects.statusFilter'),
-            style: Theme.of(context).textTheme.labelMedium
-                ?.copyWith(color: colors.muted, fontWeight: FontWeight.w700),
-          ),
+          _FilterLabel(text: l10n.t('projects.statusFilter')),
           const SizedBox(height: 9),
-          Wrap(
-            spacing: 7,
-            runSpacing: 7,
+          _ScrollableChipRow(
             children: [
               TechChip(
                 label: l10n.t('projects.allStatuses'),
                 selected: status == null,
+                inline: true,
+                compact: true,
                 onTap: () {
                   if (status != null) onStatusChanged(status!);
                 },
@@ -265,21 +218,72 @@ class _FilterPanel extends StatelessWidget {
                 TechChip(
                   label: l10n.t(item.translationKey),
                   selected: status == item,
+                  inline: true,
+                  compact: true,
                   onTap: () => onStatusChanged(item),
                 ),
             ],
           ),
-          const SizedBox(height: 6),
-          if (hasFilters)
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: TextButton.icon(
-                onPressed: onClear,
-                icon: const Icon(Icons.filter_alt_off_outlined, size: 16),
-                label: Text(l10n.t('common.clearFilters')),
-              ),
-            ),
         ],
+      ),
+    );
+  }
+}
+
+class _FilterLabel extends StatelessWidget {
+  const _FilterLabel({required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    final inset = context.isMobile ? 18.0 : 22.0;
+    return Padding(
+      padding: EdgeInsetsDirectional.only(start: inset, end: inset),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+          color: context.colors.muted,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+}
+
+/// A single horizontally scrollable row of chips. Works with touch, trackpad
+/// and mouse drag (including on web), and follows RTL automatically.
+class _ScrollableChipRow extends StatelessWidget {
+  const _ScrollableChipRow({required this.children});
+
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    final inset = context.isMobile ? 18.0 : 22.0;
+
+    return ScrollConfiguration(
+      behavior: ScrollConfiguration.of(context).copyWith(
+        scrollbars: false,
+        dragDevices: {
+          PointerDeviceKind.touch,
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.stylus,
+        },
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: const BouncingScrollPhysics(),
+        padding: EdgeInsetsDirectional.only(start: inset, end: inset),
+        child: Row(
+          children: [
+            for (var i = 0; i < children.length; i++) ...[
+              if (i > 0) const SizedBox(width: 2),
+              children[i],
+            ],
+          ],
+        ),
       ),
     );
   }

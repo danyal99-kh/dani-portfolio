@@ -38,35 +38,7 @@ class SkillsPage extends StatelessWidget {
             icon: Icons.auto_awesome_outlined,
           ),
           const SizedBox(height: 20),
-          RevealOnVisible(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-              decoration: BoxDecoration(
-                color: colors.accent.withValues(alpha: 0.08),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: colors.accent.withValues(alpha: 0.22),
-                ),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.info_outline_rounded,
-                    size: 17,
-                    color: colors.accent,
-                  ),
-                  const SizedBox(width: 9),
-                  Expanded(
-                    child: Text(
-                      l10n.t('skills.noPercent'),
-                      style: Theme.of(context).textTheme.bodySmall
-                          ?.copyWith(color: colors.muted, height: 1.6),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+
           SizedBox(height: context.sectionGap),
           for (var i = 0; i < SkillCategory.values.length; i++) ...[
             if (i > 0) SizedBox(height: context.sectionGap),

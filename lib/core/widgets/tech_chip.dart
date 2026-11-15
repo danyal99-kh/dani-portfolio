@@ -14,6 +14,7 @@ class TechChip extends StatelessWidget {
     this.compact = false,
     this.accentColor,
     this.raised = false,
+    this.inline = false,
   });
 
   final String label;
@@ -23,7 +24,7 @@ class TechChip extends StatelessWidget {
   final bool compact;
   final Color? accentColor;
   final bool raised;
-
+  final bool inline;
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
@@ -31,6 +32,20 @@ class TechChip extends StatelessWidget {
     final accented = accentColor != null;
     final highlighted = selected || accented;
     final reduceMotion = context.reduceMotion;
+    final labelText = Text(
+      label,
+      maxLines: 1,
+      softWrap: false,
+      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+        color: highlighted ? tone : colors.text,
+        fontWeight: selected
+            ? FontWeight.w700
+            : accented
+            ? FontWeight.w600
+            : FontWeight.w500,
+        fontSize: compact ? 11.5 : 12.5,
+      ),
+    );
     final content = AnimatedContainer(
       duration: reduceMotion
           ? Duration.zero
@@ -84,20 +99,7 @@ class TechChip extends StatelessWidget {
             ),
             const SizedBox(width: 6),
           ],
-          Flexible(
-            child: Text(
-              label,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: highlighted ? tone : colors.text,
-                fontWeight: selected
-                    ? FontWeight.w700
-                    : accented
-                    ? FontWeight.w600
-                    : FontWeight.w500,
-                fontSize: compact ? 11.5 : 12.5,
-              ),
-            ),
-          ),
+          inline ? labelText : Flexible(child: labelText),
         ],
       ),
     );

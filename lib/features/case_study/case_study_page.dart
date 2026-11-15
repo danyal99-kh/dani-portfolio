@@ -631,16 +631,52 @@ class _Gallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.colors;
+    final height = context.isMobile ? 260.0 : 340.0;
+
     return ResponsiveGrid(
       minItemWidth: 320,
       maxColumns: 2,
       children: [
         for (final asset in project.caseStudy.gallery)
-          AppImage(
-            asset: asset,
-            height: 230,
+          Container(
+            height: height,
             width: double.infinity,
-            borderRadius: 18,
+            decoration: BoxDecoration(
+              color: colors.surfaceAlt,
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: colors.border.withValues(alpha: 0.5)),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(18),
+              child: Image.asset(
+                asset,
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.medium,
+                errorBuilder: (context, error, stack) => Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.image_not_supported_outlined,
+                          color: colors.muted,
+                          size: 30,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          asset,
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(color: colors.muted, fontSize: 10),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
       ],
     );

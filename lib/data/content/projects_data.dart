@@ -117,7 +117,7 @@ const List<Project> projects = [
               'Planning token authentication for further development.',
         ),
       ],
-      gallery: ['assets/images/azmode.jpg', 'assets/images/azmode.jpg'],
+      gallery: ['assets/images/azmode.jpg', 'assets/images/azmode2.jpg'],
     ),
   ),
   Project(
@@ -163,7 +163,7 @@ const List<Project> projects = [
           descriptionEn: 'Showing message send and receive states.',
         ),
       ],
-      gallery: ['assets/images/chatbot.jpg', 'assets/images/chatbot2.jpg'],
+      gallery: ['assets/images/chatbot.jpg', 'assets/images/chatbot1.jpg'],
     ),
   ),
   Project(

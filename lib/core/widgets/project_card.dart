@@ -537,11 +537,11 @@ class _CaseStudyAction extends StatelessWidget {
 Color _projectAccent(BuildContext context, String id) {
   if (context.isDark) {
     return switch (id) {
-      'lawin' => const Color(0xFF71D8CB),
-      'azmode' => const Color(0xFFC0A6FF),
+      'lawin' => const Color.fromARGB(255, 202, 206, 153),
+      'azmode' => const Color(0xFF71D8CB),
       'chatbot' => const Color(0xFF8CCBFF),
       'language-learning' => const Color(0xFFFFB877),
-      'personal-accounting' => const Color(0xFFF1D37D),
+      'personal-accounting' => const Color.fromARGB(255, 116, 216, 113),
       _ => context.colors.accent,
     };
   }
