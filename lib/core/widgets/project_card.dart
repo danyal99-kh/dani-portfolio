@@ -177,15 +177,19 @@ class _ProjectCover extends StatelessWidget {
                 )
                 .drive(Tween<double>(begin: 1.045, end: 1)),
             child: AnimatedScale(
-              scale: reduceMotion || !active ? 1 : 1.035,
+              scale: reduceMotion || !active ? 1 : 1.02,
               duration: reduceMotion
                   ? Duration.zero
                   : const Duration(milliseconds: 480),
               curve: Curves.easeOutCubic,
-              child: AppImage(
-                asset: project.imageAsset,
-                borderRadius: 0,
-                semanticLabel: project.name,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: AppImage(
+                  asset: project.imageAsset,
+                  fit: BoxFit.contain,
+                  borderRadius: 12,
+                  semanticLabel: project.name,
+                ),
               ),
             ),
           ),

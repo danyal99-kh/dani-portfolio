@@ -1,3 +1,4 @@
+import 'package:daniweb/core/widgets/adaptive_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -188,11 +189,15 @@ class _CaseStudyContent extends StatelessWidget {
               borderRadius: BorderRadius.circular(24),
               child: Stack(
                 children: [
-                  AppImage(
-                    asset: project.imageAsset,
+                  SizedBox(
                     width: double.infinity,
-                    height: context.isMobile ? 220 : 380,
-                    borderRadius: 24,
+                    child: Center(
+                      child: AdaptiveImage(
+                        asset: project.imageAsset,
+                        borderRadius: 24,
+                        maxHeight: context.isMobile ? 420 : 560,
+                      ),
+                    ),
                   ),
                   Positioned(
                     bottom: 14,
@@ -634,11 +639,10 @@ class _Gallery extends StatelessWidget {
       minItemWidth: 320,
       maxColumns: 2,
       children: [
-        AppImage(
+        AdaptiveImage(
           asset: project.imageAsset,
-          height: 230,
-          width: double.infinity,
           borderRadius: 18,
+          maxHeight: 460,
         ),
         Container(
           height: 230,
