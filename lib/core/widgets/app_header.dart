@@ -227,7 +227,7 @@ class _Brand extends StatelessWidget {
     final l10n = context.l10n;
     final isFa = l10n.isFa;
     final name = isFa ? profile.nameFa.split(' ').first : profile.firstNameEn;
-    final monogram = '${profile.firstNameEn.substring(0, 1)}.';
+    final monogram = profile.initialsEn;
     final fg = context.isDark ? const Color(0xFF152426) : Colors.white;
 
     return Semantics(

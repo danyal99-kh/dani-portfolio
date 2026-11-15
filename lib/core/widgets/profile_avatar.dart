@@ -31,7 +31,7 @@ class _ProfileAvatarState extends State<ProfileAvatar>
     super.initState();
     _spin = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 9),
+      duration: const Duration(seconds: 4),
     );
   }
 
